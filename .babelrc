@@ -1,0 +1,22 @@
+{
+  "plugins": [
+    "transform-es2015-modules-commonjs",
+    "dynamic-import-node",
+    ["module-resolver", {
+      "root": ["./src"],
+      "alias": {
+        "lib": "./lib"
+      }
+    }],
+    "syntax-flow",
+    "transform-flow-strip-types",
+    "transform-object-rest-spread"
+  ],
+  "env": {
+    "production": {
+      "ignore": [
+        "**/*.test.js"
+      ]
+    }
+  }
+}
