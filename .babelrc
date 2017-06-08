@@ -1,5 +1,11 @@
 {
+  "presets": [
+    "es2015",
+    "es2017"
+  ],
   "plugins": [
+    "transform-object-rest-spread",
+    "add-module-exports",
     "transform-es2015-modules-commonjs",
     "dynamic-import-node",
     ["module-resolver", {
