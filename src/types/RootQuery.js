@@ -22,7 +22,6 @@ import {
   Brand,
   Category,
   Cart,
-  CartProduct,
   PaymentMethod,
   Ads,
   Partner
@@ -45,27 +44,12 @@ const RootQuery = new GraphQLObjectType({
   fields: () => ({
     node: Node,
     cart: {
-      type: connectionWithExtras(Cart),
+      type: Cart,
       description: 'Cart',
-      args: connectionArguments(),
       resolve: (obj, args, {user}, info) => {
-        let qb = sql('product')
-        .orderBy('id', 'DESC')
-        .limit(10)
-
-        return paginator(qb, 'product.id', args)
-      }
-    },
-    cartProduct: {
-      type: connectionWithExtras(CartProduct),
-      description: 'CartProduct',
-      args: connectionArguments(),
-      resolve: (obj, args, {user}, info) => {
-        let qb = sql('product')
-        .orderBy('id', 'DESC')
-        .limit(10)
-
-        return paginator(qb, 'product.id', args)
+        return {
+          id: 1
+        }
       }
     },
     categories: {

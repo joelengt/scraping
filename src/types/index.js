@@ -16,10 +16,11 @@ export {District} from './District'
 export {Company} from './Company'
 export {Category} from './Category'
 export {Cart} from './Cart'
-export {CartProduct} from './CartProduct'
 export {Ads} from './Ads'
 export {Partner} from './Partner'
 export {UserType} from './UserType'
+export {CartProduct} from './CartProduct'
+
 
 export {
   Node,
