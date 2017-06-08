@@ -12,6 +12,7 @@ import {Product} from './Product'
 import {
   GraphQLObjectType,
   GraphQLString,
+  GraphQLList,
   GraphQLInt,
   GraphQLBoolean,
   GraphQLFloat
@@ -22,34 +23,30 @@ export const CartProduct = new GraphQLObjectType({
   interfaces: [NodeInterface],
   fields: {
     ...idField,
-    product: {
-      type: Product,
+    items: {
+      type: new GraphQLList(Product),
       resolve: (obj) => {
         return sql('product')
         .limit(5)
-        .spread(noop)
       }
     },
     quantity: {
-      type: GraphQLInt
+      type: GraphQLInt,
+      resolve: (obj) => {
+        return 23
+      }
     },
-    price: {
-      type: GraphQLString
+    total: {
+      type: GraphQLFloat,
+      resolve: (obj) => {
+        return 105.00
+      }
     },
-    name: {
-      type: GraphQLString
-    },
-    photo: {
-      type: GraphQLString
-    },
-    unit_price: {
-      type: GraphQLFloat
-    },
-    is_featured: {
-      type: GraphQLBoolean
-    },
-    is_archived: {
-      type: GraphQLBoolean
+    _total: {
+      type: GraphQLString,
+      resolve: (obj) => {
+        return 'S/105.00'
+      }
     }
   }
 })

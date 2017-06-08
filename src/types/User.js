@@ -122,7 +122,7 @@ const User = new GraphQLObjectType({
         return sql('address').where('client_id', obj.id).limit(1).spread(noop)
       }
     },
-    purchases: {
+    orders: {
       type: new GraphQLList(Purchase),
       resolve: (obj) => {
         return sql('purchase')
@@ -134,7 +134,7 @@ const User = new GraphQLObjectType({
       type: UserType,
       resolve: (obj) => {
         return {
-          name: 'tipo de usuario'
+          name: 'tipo_de_usuario'
         }
       }
     }

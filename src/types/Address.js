@@ -5,7 +5,8 @@ import {
 } from 'graphql-relay'
 
 import {
-  noop
+  noop,
+  idField
 } from '../utils'
 
 import { User } from './User'
@@ -21,11 +22,7 @@ const Address = new GraphQLObjectType({
   name: 'Address',
   interfaces: [NodeInterface],
   fields: () => ({
-    id: globalIdField(),
-    _id: {
-      type: GraphQLID,
-      resolve: obj => obj.id
-    },
+    ...idField,
     user: {
       type: User,
       resolve: (obj) => {
@@ -49,13 +46,13 @@ const Address = new GraphQLObjectType({
     },
     delivery_address: {
       type: GraphQLString,
-      resolver: (obj) => {
+      resolver: () => {
         return 'av delivery_address'
       }
     },
     bill_address: {
       type: GraphQLString,
-      resolver: (obj) => {
+      resolver: () => {
         return 'av bill_address'
       }
     },

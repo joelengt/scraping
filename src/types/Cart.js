@@ -12,6 +12,7 @@ import {Product} from './Product'
 import {
   GraphQLObjectType,
   GraphQLString,
+  GraphQLList,
   GraphQLInt,
   GraphQLBoolean
 } from 'graphql'
@@ -22,15 +23,17 @@ export const Cart = new GraphQLObjectType({
   fields: {
     ...idField,
     product: {
-      type: Product,
+      type: new GraphQLList(Product),
       resolve: (obj) => {
         return sql('product')
         .limit(5)
-        .spread(noop)
       }
     },
     partner_id: {
-      type: GraphQLInt
+      type: GraphQLInt,
+      resolve: () => {
+        return 2
+      }
     },
     is_featured: {
       type: GraphQLBoolean
