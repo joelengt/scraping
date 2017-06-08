@@ -9,21 +9,21 @@ import {
 import {
   Node,
   Address,
-  // Purchase,
+  Purchase,
   // GoodsBatch,
-  // User,
+  User,
   // Searchable,
   // SearchEnum,
-  // BusinessType,
-  // ReceiptType,
+  BusinessType,
+  ReceiptType,
   Product,
-  // PurchaseStatus,
-  // District,
+  PurchaseStatus,
+  District,
   Brand,
   Category,
   Cart,
   CartProduct,
-  // PaymentMethod,
+  PaymentMethod,
   Ads,
   Partner
 } from './'
@@ -117,6 +117,56 @@ const RootQuery = new GraphQLObjectType({
       resolve: (obj, args, {user}, info) => {
         let qb = sql('business_partner').orderBy('id', 'DESC')
         return paginator(qb, 'business_partner.id', args)
+      }
+    },
+    address: {
+      type: connectionWithExtras(Address),
+      description: 'Address',
+      args: connectionArguments(),
+      resolve: (obj, args, {user}, info) => {
+        let qb = sql('address').orderBy('id', 'DESC')
+        return paginator(qb, 'address.id', args)
+      }
+    },
+    orders: {
+      type: connectionWithExtras(Purchase),
+      description: 'Order',
+      args: connectionArguments(),
+      resolve: (obj, args, {user}, info) => {
+        let qb = sql('purchase').orderBy('id', 'DESC')
+        return paginator(qb, 'purchase.id', args)
+      }
+    },
+    orderStatus: {
+      type: new GraphQLList(PurchaseStatus),
+      description: 'purchases',
+      resolve: () => sql('purchase_status')
+    },
+    businessType: {
+      type: new GraphQLList(BusinessType),
+      description: 'All business types a user can belong',
+      resolve: () => sql('business_type')
+    },
+    districts: {
+      type: new GraphQLList(District),
+      resolve: () => sql('district')
+    },
+    paymentMethod: {
+      type: new GraphQLList(PaymentMethod),
+      resolve: () => paymentMethodData
+    },
+    receiptType: {
+      type: new GraphQLList(ReceiptType),
+      description: 'Receipt types',
+      resolve: () => receiptTypeData
+    },
+    users: {
+      type: connectionWithExtras(User),
+      description: 'users',
+      args: connectionArguments(),
+      resolve: (obj, args, ctx, info) => {
+        let qb = sql('client')
+        return paginator(qb, 'client.id', args)
       }
     }
   })

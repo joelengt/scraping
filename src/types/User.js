@@ -9,6 +9,7 @@ import {NodeInterface} from './Node'
 import {BusinessType} from './BusinessType'
 import {Address} from './Address'
 import {Purchase} from './Purchase'
+import {UserType} from './UserType'
 
 import {
   GraphQLObjectType,
@@ -127,6 +128,14 @@ const User = new GraphQLObjectType({
         return sql('purchase')
         .where('client_id', obj.id)
         .orderBy('created_at', 'DESC')
+      }
+    },
+    user_type: {
+      type: UserType,
+      resolve: (obj) => {
+        return {
+          name: 'tipo de usuario'
+        }
       }
     }
   })

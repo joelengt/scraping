@@ -21,6 +21,7 @@ import {PurchaseStatus} from './PurchaseStatus'
 import {PurchaseItem} from './PurchaseItem'
 import {PaymentMethod} from './PaymentMethod'
 import {ReceiptType} from './ReceiptType'
+import {Address} from './Address'
 
 import {
   GraphQLObjectType,
@@ -155,10 +156,16 @@ export const Purchase = new GraphQLObjectType({
       }
     },
     bill_doc: {
-      type: GraphQLString
+      type: GraphQLString,
+      resolve: (obj) => {
+        return 'av one place'
+      }
     },
-    is_doc_riqra: {
-      type: GraphQLBoolean
+    bill_address: {
+      type: GraphQLString,
+      resolve: (obj) => {
+        return 'av second place'
+      }
     },
     guide_doc: {
       type: GraphQLString

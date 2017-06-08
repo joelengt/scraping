@@ -47,6 +47,18 @@ const Address = new GraphQLObjectType({
     address: {
       type: GraphQLString
     },
+    delivery_address: {
+      type: GraphQLString,
+      resolver: (obj) => {
+        return 'av delivery_address'
+      }
+    },
+    bill_address: {
+      type: GraphQLString,
+      resolver: (obj) => {
+        return 'av bill_address'
+      }
+    },
     reference: {
       type: GraphQLString
     },
