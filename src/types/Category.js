@@ -11,7 +11,7 @@ import {
   GraphQLString,
   GraphQLInt,
   GraphQLBoolean,
-  GraphQLList
+  GraphQLList,
 } from 'graphql'
 
 // TODO improve category/subcategory structure
@@ -38,6 +38,12 @@ export const Category = new GraphQLObjectType({
     },
     is_featured: {
       type: GraphQLBoolean
+    },
+    parent_id: {
+      type: GraphQLInt,
+      resolve: (obj) => {
+        return 1
+      }
     },
     is_archived: {
       type: GraphQLBoolean

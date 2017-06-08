@@ -1,7 +1,7 @@
 import RootQuery from './RootQuery'
 
 export {Purchase} from './Purchase'
-export * from './PurchaseItem'
+// export * from './PurchaseItem'
 export {Product} from './Product'
 export {Brand} from './Brand'
 // export {BusinessType} from './BusinessType'

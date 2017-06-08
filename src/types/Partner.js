@@ -12,6 +12,7 @@ import { NodeInterface } from './Node'
 import { Product } from './Product'
 import { Ads } from './Ads'
 import { Purchase } from './Purchase'
+import { Cart } from './Cart'
 
 import {
   idField
@@ -63,6 +64,22 @@ export const Partner = new GraphQLObjectType({
       type: new GraphQLList(Purchase),
       resolve: (obj) => {
         return sql('purchase')
+      }
+    },
+    carts: {
+      type: new GraphQLList(Cart),
+      resolve: (obj) => {
+        return [
+          {
+            id: 1
+          },
+          {
+            id: 2
+          },
+          {
+            id: 3
+          }
+        ]
       }
     }
   }
