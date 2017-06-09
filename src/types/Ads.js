@@ -24,7 +24,7 @@ export const Ads = new GraphQLObjectType({
     link: {
       type: GraphQLString
     },
-    is_archived: {
+    isArchived: {
       type: GraphQLBoolean,
       resolve: () => {
         return false

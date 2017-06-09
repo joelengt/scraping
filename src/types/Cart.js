@@ -8,6 +8,7 @@ import {
 } from '../utils'
 
 import {CartProduct} from './CartProduct'
+import {CartPrices} from './CartPrices'
 
 import {
   GraphQLObjectType,
@@ -31,19 +32,28 @@ export const Cart = new GraphQLObjectType({
             id: 1,
             name: 'product 1',
             quantity: 10,
-            unit_price: 2.25
+            unitPrice: 2.25,
+            photo: 'http://happy_image.png',
+            _price: 'S/10.25',
+            price: 10.25
           },
           {
             id: 2,
             name: 'product 2',
             quantity: 5,
-            unit_price: 3.25
+            unitPrice: 3.25,
+            photo: 'http://happy_image2.png',
+            _price: 'S/20.25',
+            price: 20.25
           },
           {
             id: 3,
             name: 'product 3',
             quantity: 2,
-            unit_price: 25.25
+            unitPrice: 25.25,
+            photo: 'http://happy_image5.png',
+            _price: 'S/20.55',
+            price: 20.55
           }
         ]
       }
@@ -54,28 +64,12 @@ export const Cart = new GraphQLObjectType({
         return 23
       }
     },
-    total: {
-      type: GraphQLFloat,
+    prices: {
+      type: CartPrices,
       resolve: (obj) => {
-        return 105.00
-      }
-    },
-    igv: {
-      type: GraphQLFloat,
-      resolve: (obj) => {
-        return 23.00
-      }
-    },
-    _igv: {
-      type: GraphQLString,
-      resolve: (obj) => {
-        return 'S/23.00'
-      }
-    },
-    _total: {
-      type: GraphQLString,
-      resolve: (obj) => {
-        return 'S/105.00'
+        return {
+          id: 1
+        }
       }
     }
   }

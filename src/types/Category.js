@@ -24,7 +24,7 @@ export const Category = new GraphQLObjectType({
     name: {
       type: GraphQLString
     },
-    name_slugify: {
+    nameSlugify: {
       type: GraphQLString
     },
     photo: {
@@ -36,16 +36,16 @@ export const Category = new GraphQLObjectType({
     level: {
       type: GraphQLInt
     },
-    is_featured: {
+    isFeatured: {
       type: GraphQLBoolean
     },
-    parent_id: {
+    parentId: {
       type: GraphQLInt,
       resolve: (obj) => {
         return 1
       }
     },
-    is_archived: {
+    iArchived: {
       type: GraphQLBoolean
     },
     parentCategories: {

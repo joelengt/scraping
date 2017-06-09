@@ -26,7 +26,7 @@ export const Partner = new GraphQLObjectType({
     name: {
       type: GraphQLString
     },
-    name_slugify: {
+    nameSlugify: {
       type: GraphQLString
     },
     logo: {
@@ -35,10 +35,10 @@ export const Partner = new GraphQLObjectType({
     color: {
       type: GraphQLString
     },
-    minimun_purchase: {
+    minimunPurchase: {
       type: GraphQLFloat
     },
-    delivery_message: {
+    deliveryMessage: {
       type: GraphQLString
     },
     ads: {
@@ -47,7 +47,7 @@ export const Partner = new GraphQLObjectType({
         return sql('banner')
       }
     },
-    is_featured: {
+    isFeatured: {
       type: GraphQLBoolean
     },
     products: {

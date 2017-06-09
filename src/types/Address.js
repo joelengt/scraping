@@ -44,13 +44,13 @@ const Address = new GraphQLObjectType({
     address: {
       type: GraphQLString
     },
-    delivery_address: {
+    deliveryAddress: {
       type: GraphQLString,
       resolver: () => {
         return 'av delivery_address'
       }
     },
-    bill_address: {
+    billAddress: {
       type: GraphQLString,
       resolver: () => {
         return 'av bill_address'

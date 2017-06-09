@@ -58,7 +58,7 @@ export const Purchase = new GraphQLObjectType({
     code: {
       type: GraphQLString
     },
-    sub_total: {
+    subTotal: {
       type: GraphQLFloat
     },
     igv: {
@@ -67,13 +67,13 @@ export const Purchase = new GraphQLObjectType({
     total: {
       type: GraphQLFloat
     },
-    payment_cost: {
+    paymentCost: {
       type: GraphQLFloat
     },
-    shipping_cost: {
+    shippingCost: {
       type: GraphQLFloat
     },
-    _sub_total: {
+    _subTotal: {
       type: GraphQLString,
       resolve: obj => numeral(obj.sub_total).format()
     },
@@ -85,11 +85,11 @@ export const Purchase = new GraphQLObjectType({
       type: GraphQLString,
       resolve: obj => numeral(obj.total).format()
     },
-    _payment_cost: {
+    _paymentCost: {
       type: GraphQLString,
       resolve: obj => numeral(obj.payment_cost).format()
     },
-    _shipping_cost: {
+    _shippingCost: {
       type: GraphQLString,
       resolve: obj => numeral(obj.shipping_cost).format()
     },
@@ -103,13 +103,13 @@ export const Purchase = new GraphQLObjectType({
     fiscal_name: {
       type: GraphQLString
     },
-    fiscal_address: {
+    fiscalAddress: {
       type: GraphQLString
     },
     dni: {
       type: GraphQLString
     },
-    delivery_address: {
+    deliveryAddress: {
       type: GraphQLString,
       resolve: (obj) => {
         let districtParts = obj.delivery_address.split(',')
@@ -122,17 +122,17 @@ export const Purchase = new GraphQLObjectType({
     reference: {
       type: GraphQLString
     },
-    created_at: {
+    createdAt: {
       type: GraphQLDate
     },
-    delivery_at: {
+    deliveryAt: {
       type: GraphQLDate
     },
-    _created_at: {
+    _createdAt: {
       type: GraphQLString,
       resolve: obj => moment(obj.created_at).format('LLL')
     },
-    _delivery_at: {
+    _deliveryAt: {
       type: GraphQLString,
       resolve: obj => moment(obj.delivery_at).format('LLL')
     },
@@ -155,19 +155,19 @@ export const Purchase = new GraphQLObjectType({
         return loaders.purchaseItem.load(obj.id)
       }
     },
-    bill_doc: {
+    billDoc: {
       type: GraphQLString,
       resolve: (obj) => {
         return 'av one place'
       }
     },
-    bill_address: {
+    billAddress: {
       type: GraphQLString,
       resolve: (obj) => {
         return 'av second place'
       }
     },
-    guide_doc: {
+    guideDoc: {
       type: GraphQLString
     }
   })

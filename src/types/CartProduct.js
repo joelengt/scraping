@@ -38,7 +38,7 @@ export const CartProduct = new GraphQLObjectType({
     name: {
       type: GraphQLString
     },
-    name_slugify: {
+    nameSlugify: {
       type: GraphQLString
     },
     photo: {
@@ -50,10 +50,10 @@ export const CartProduct = new GraphQLObjectType({
     description: {
       type: GraphQLString
     },
-    seo_description: {
+    seoDescription: {
       type: GraphQLString
     },
-    time_life: {
+    timeLife: {
       type: GraphQLString
     },
     offer: {
@@ -62,10 +62,16 @@ export const CartProduct = new GraphQLObjectType({
     price: {
       type: GraphQLFloat
     },
-    unit_price: {
+    _price: {
+      type: GraphQLString
+    },
+    unitPrice: {
       type: GraphQLFloat
     },
-    suggested_price: {
+    _unitPrice: {
+      type: GraphQLString
+    },
+    suggestedPrice: {
       type: GraphQLFloat
     },
     stock: {
@@ -77,10 +83,10 @@ export const CartProduct = new GraphQLObjectType({
     order: {
       type: GraphQLInt
     },
-    need_perception: {
+    needPerception: {
       type: GraphQLBoolean
     },
-    is_always_in_stock: {
+    isAlwaysInStock: {
       type: GraphQLBoolean
     },
     quantity: {
@@ -96,10 +102,10 @@ export const CartProduct = new GraphQLObjectType({
         })
       }
     },
-    is_featured: {
+    isFeatured: {
       type: GraphQLBoolean
     },
-    is_archived: {
+    isArchived: {
       type: GraphQLBoolean
     }
   }

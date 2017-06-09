@@ -32,7 +32,7 @@ export const Brand = new GraphQLObjectType({
     name: {
       type: GraphQLString
     },
-    name_slugify: {
+    nameSlugify: {
       type: GraphQLString
     },
     photo: {
@@ -41,13 +41,13 @@ export const Brand = new GraphQLObjectType({
     description: {
       type: GraphQLString
     },
-    seo_description: {
+    seoDescription: {
       type: GraphQLString
     },
-    is_featured: {
+    isFeatured: {
       type: GraphQLBoolean
     },
-    is_archived: {
+    isArchived: {
       type: GraphQLBoolean
     }
   }
