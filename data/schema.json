@@ -283,22 +283,6 @@
               "deprecationReason": null
             },
             {
-              "name": "districts",
-              "description": null,
-              "args": [],
-              "type": {
-                "kind": "LIST",
-                "name": null,
-                "ofType": {
-                  "kind": "OBJECT",
-                  "name": "District",
-                  "ofType": null
-                }
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
               "name": "users",
               "description": "users",
               "args": [
@@ -400,6 +384,11 @@
             },
             {
               "kind": "OBJECT",
+              "name": "CartPrices",
+              "ofType": null
+            },
+            {
+              "kind": "OBJECT",
               "name": "Product",
               "ofType": null
             },
@@ -467,18 +456,6 @@
               "deprecationReason": null
             },
             {
-              "name": "_id",
-              "description": null,
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "ID",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
               "name": "items",
               "description": null,
               "args": [],
@@ -507,48 +484,12 @@
               "deprecationReason": null
             },
             {
-              "name": "total",
+              "name": "prices",
               "description": null,
               "args": [],
               "type": {
-                "kind": "SCALAR",
-                "name": "Float",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "igv",
-              "description": null,
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "Float",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "_igv",
-              "description": null,
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "_total",
-              "description": null,
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "String",
+                "kind": "OBJECT",
+                "name": "CartPrices",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -583,18 +524,6 @@
                   "name": "ID",
                   "ofType": null
                 }
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "_id",
-              "description": null,
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "ID",
-                "ofType": null
               },
               "isDeprecated": false,
               "deprecationReason": null
@@ -636,7 +565,7 @@
               "deprecationReason": null
             },
             {
-              "name": "name_slugify",
+              "name": "nameSlugify",
               "description": null,
               "args": [],
               "type": {
@@ -684,7 +613,7 @@
               "deprecationReason": null
             },
             {
-              "name": "seo_description",
+              "name": "seoDescription",
               "description": null,
               "args": [],
               "type": {
@@ -696,7 +625,7 @@
               "deprecationReason": null
             },
             {
-              "name": "time_life",
+              "name": "timeLife",
               "description": null,
               "args": [],
               "type": {
@@ -732,7 +661,19 @@
               "deprecationReason": null
             },
             {
-              "name": "unit_price",
+              "name": "_price",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "unitPrice",
               "description": null,
               "args": [],
               "type": {
@@ -744,7 +685,19 @@
               "deprecationReason": null
             },
             {
-              "name": "suggested_price",
+              "name": "_unitPrice",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "suggestedPrice",
               "description": null,
               "args": [],
               "type": {
@@ -792,7 +745,7 @@
               "deprecationReason": null
             },
             {
-              "name": "need_perception",
+              "name": "needPerception",
               "description": null,
               "args": [],
               "type": {
@@ -804,7 +757,7 @@
               "deprecationReason": null
             },
             {
-              "name": "is_always_in_stock",
+              "name": "isAlwaysInStock",
               "description": null,
               "args": [],
               "type": {
@@ -844,7 +797,7 @@
               "deprecationReason": null
             },
             {
-              "name": "is_featured",
+              "name": "isFeatured",
               "description": null,
               "args": [],
               "type": {
@@ -856,7 +809,7 @@
               "deprecationReason": null
             },
             {
-              "name": "is_archived",
+              "name": "isArchived",
               "description": null,
               "args": [],
               "type": {
@@ -901,18 +854,6 @@
               "deprecationReason": null
             },
             {
-              "name": "_id",
-              "description": null,
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "ID",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
               "name": "company",
               "description": null,
               "args": [],
@@ -937,7 +878,7 @@
               "deprecationReason": null
             },
             {
-              "name": "name_slugify",
+              "name": "nameSlugify",
               "description": null,
               "args": [],
               "type": {
@@ -973,7 +914,7 @@
               "deprecationReason": null
             },
             {
-              "name": "seo_description",
+              "name": "seoDescription",
               "description": null,
               "args": [],
               "type": {
@@ -985,7 +926,7 @@
               "deprecationReason": null
             },
             {
-              "name": "is_featured",
+              "name": "isFeatured",
               "description": null,
               "args": [],
               "type": {
@@ -997,7 +938,7 @@
               "deprecationReason": null
             },
             {
-              "name": "is_archived",
+              "name": "isArchived",
               "description": null,
               "args": [],
               "type": {
@@ -1037,18 +978,6 @@
                   "name": "ID",
                   "ofType": null
                 }
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "_id",
-              "description": null,
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "ID",
-                "ofType": null
               },
               "isDeprecated": false,
               "deprecationReason": null
@@ -1139,18 +1068,6 @@
               "deprecationReason": null
             },
             {
-              "name": "_id",
-              "description": null,
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "ID",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
               "name": "name",
               "description": null,
               "args": [],
@@ -1163,7 +1080,7 @@
               "deprecationReason": null
             },
             {
-              "name": "name_slugify",
+              "name": "nameSlugify",
               "description": null,
               "args": [],
               "type": {
@@ -1211,7 +1128,7 @@
               "deprecationReason": null
             },
             {
-              "name": "is_featured",
+              "name": "isFeatured",
               "description": null,
               "args": [],
               "type": {
@@ -1223,7 +1140,7 @@
               "deprecationReason": null
             },
             {
-              "name": "parent_id",
+              "name": "parentId",
               "description": null,
               "args": [],
               "type": {
@@ -1235,7 +1152,7 @@
               "deprecationReason": null
             },
             {
-              "name": "is_archived",
+              "name": "iArchived",
               "description": null,
               "args": [],
               "type": {
@@ -1274,6 +1191,135 @@
                   "name": "Category",
                   "ofType": null
                 }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [
+            {
+              "kind": "INTERFACE",
+              "name": "Node",
+              "ofType": null
+            }
+          ],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "CartPrices",
+          "description": null,
+          "fields": [
+            {
+              "name": "id",
+              "description": "The ID of an object",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "ID",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "subTotal",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "_subTotal",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "igv",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "_igv",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "total",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "_total",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "minimumOrder",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "_minimumOrder",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
               },
               "isDeprecated": false,
               "deprecationReason": null
@@ -1495,18 +1541,6 @@
               "deprecationReason": null
             },
             {
-              "name": "_id",
-              "description": null,
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "ID",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
               "name": "brand",
               "description": null,
               "args": [],
@@ -1543,7 +1577,7 @@
               "deprecationReason": null
             },
             {
-              "name": "name_slugify",
+              "name": "nameSlugify",
               "description": null,
               "args": [],
               "type": {
@@ -1591,7 +1625,7 @@
               "deprecationReason": null
             },
             {
-              "name": "seo_description",
+              "name": "seoDescription",
               "description": null,
               "args": [],
               "type": {
@@ -1603,7 +1637,7 @@
               "deprecationReason": null
             },
             {
-              "name": "time_life",
+              "name": "timeLife",
               "description": null,
               "args": [],
               "type": {
@@ -1627,6 +1661,18 @@
               "deprecationReason": null
             },
             {
+              "name": "_offer",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "price",
               "description": null,
               "args": [],
@@ -1639,7 +1685,19 @@
               "deprecationReason": null
             },
             {
-              "name": "unit_price",
+              "name": "_price",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "unitPrice",
               "description": null,
               "args": [],
               "type": {
@@ -1651,7 +1709,19 @@
               "deprecationReason": null
             },
             {
-              "name": "suggested_price",
+              "name": "_unitPrice",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "suggestedPrice",
               "description": null,
               "args": [],
               "type": {
@@ -1687,6 +1757,18 @@
               "deprecationReason": null
             },
             {
+              "name": "quantity",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "order",
               "description": null,
               "args": [],
@@ -1699,7 +1781,7 @@
               "deprecationReason": null
             },
             {
-              "name": "need_perception",
+              "name": "needPerception",
               "description": null,
               "args": [],
               "type": {
@@ -1711,7 +1793,7 @@
               "deprecationReason": null
             },
             {
-              "name": "is_always_in_stock",
+              "name": "isAlwaysInStock",
               "description": null,
               "args": [],
               "type": {
@@ -1739,7 +1821,7 @@
               "deprecationReason": null
             },
             {
-              "name": "is_featured",
+              "name": "isFeatured",
               "description": null,
               "args": [],
               "type": {
@@ -1751,7 +1833,7 @@
               "deprecationReason": null
             },
             {
-              "name": "is_archived",
+              "name": "isArchived",
               "description": null,
               "args": [],
               "type": {
@@ -1920,18 +2002,6 @@
               "deprecationReason": null
             },
             {
-              "name": "_id",
-              "description": null,
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "ID",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
               "name": "name",
               "description": null,
               "args": [],
@@ -1968,7 +2038,7 @@
               "deprecationReason": null
             },
             {
-              "name": "is_archived",
+              "name": "isArchived",
               "description": null,
               "args": [],
               "type": {
@@ -2075,18 +2145,6 @@
               "deprecationReason": null
             },
             {
-              "name": "_id",
-              "description": null,
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "ID",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
               "name": "name",
               "description": null,
               "args": [],
@@ -2099,7 +2157,7 @@
               "deprecationReason": null
             },
             {
-              "name": "name_slugify",
+              "name": "nameSlugify",
               "description": null,
               "args": [],
               "type": {
@@ -2135,7 +2193,7 @@
               "deprecationReason": null
             },
             {
-              "name": "minimun_purchase",
+              "name": "minimunPurchase",
               "description": null,
               "args": [],
               "type": {
@@ -2147,7 +2205,7 @@
               "deprecationReason": null
             },
             {
-              "name": "delivery_message",
+              "name": "deliveryMessage",
               "description": null,
               "args": [],
               "type": {
@@ -2175,7 +2233,7 @@
               "deprecationReason": null
             },
             {
-              "name": "is_featured",
+              "name": "isFeatured",
               "description": null,
               "args": [],
               "type": {
@@ -2316,7 +2374,7 @@
               "deprecationReason": null
             },
             {
-              "name": "sub_total",
+              "name": "subTotal",
               "description": null,
               "args": [],
               "type": {
@@ -2352,7 +2410,7 @@
               "deprecationReason": null
             },
             {
-              "name": "payment_cost",
+              "name": "paymentCost",
               "description": null,
               "args": [],
               "type": {
@@ -2364,7 +2422,7 @@
               "deprecationReason": null
             },
             {
-              "name": "shipping_cost",
+              "name": "shippingCost",
               "description": null,
               "args": [],
               "type": {
@@ -2376,7 +2434,7 @@
               "deprecationReason": null
             },
             {
-              "name": "_sub_total",
+              "name": "_subTotal",
               "description": null,
               "args": [],
               "type": {
@@ -2412,7 +2470,7 @@
               "deprecationReason": null
             },
             {
-              "name": "_payment_cost",
+              "name": "_paymentCost",
               "description": null,
               "args": [],
               "type": {
@@ -2424,7 +2482,7 @@
               "deprecationReason": null
             },
             {
-              "name": "_shipping_cost",
+              "name": "_shippingCost",
               "description": null,
               "args": [],
               "type": {
@@ -2472,7 +2530,7 @@
               "deprecationReason": null
             },
             {
-              "name": "fiscal_address",
+              "name": "fiscalAddress",
               "description": null,
               "args": [],
               "type": {
@@ -2496,7 +2554,7 @@
               "deprecationReason": null
             },
             {
-              "name": "delivery_address",
+              "name": "deliveryAddress",
               "description": null,
               "args": [],
               "type": {
@@ -2520,7 +2578,7 @@
               "deprecationReason": null
             },
             {
-              "name": "created_at",
+              "name": "createdAt",
               "description": null,
               "args": [],
               "type": {
@@ -2532,7 +2590,7 @@
               "deprecationReason": null
             },
             {
-              "name": "delivery_at",
+              "name": "deliveryAt",
               "description": null,
               "args": [],
               "type": {
@@ -2544,7 +2602,7 @@
               "deprecationReason": null
             },
             {
-              "name": "_created_at",
+              "name": "_createdAt",
               "description": null,
               "args": [],
               "type": {
@@ -2556,7 +2614,7 @@
               "deprecationReason": null
             },
             {
-              "name": "_delivery_at",
+              "name": "_deliveryAt",
               "description": null,
               "args": [],
               "type": {
@@ -2608,7 +2666,7 @@
               "deprecationReason": null
             },
             {
-              "name": "bill_doc",
+              "name": "billDoc",
               "description": null,
               "args": [],
               "type": {
@@ -2620,7 +2678,7 @@
               "deprecationReason": null
             },
             {
-              "name": "bill_address",
+              "name": "billAddress",
               "description": null,
               "args": [],
               "type": {
@@ -2632,7 +2690,7 @@
               "deprecationReason": null
             },
             {
-              "name": "guide_doc",
+              "name": "guideDoc",
               "description": null,
               "args": [],
               "type": {
@@ -3073,18 +3131,6 @@
               "deprecationReason": null
             },
             {
-              "name": "_id",
-              "description": null,
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "ID",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
               "name": "user",
               "description": null,
               "args": [],
@@ -3121,7 +3167,7 @@
               "deprecationReason": null
             },
             {
-              "name": "delivery_address",
+              "name": "deliveryAddress",
               "description": null,
               "args": [],
               "type": {
@@ -3133,7 +3179,7 @@
               "deprecationReason": null
             },
             {
-              "name": "bill_address",
+              "name": "billAddress",
               "description": null,
               "args": [],
               "type": {
@@ -3202,18 +3248,6 @@
               "deprecationReason": null
             },
             {
-              "name": "_id",
-              "description": null,
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "ID",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
               "name": "name",
               "description": null,
               "args": [],
@@ -3254,18 +3288,6 @@
                   "name": "ID",
                   "ofType": null
                 }
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "_id",
-              "description": null,
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "ID",
-                "ofType": null
               },
               "isDeprecated": false,
               "deprecationReason": null
@@ -3427,18 +3449,6 @@
                   "name": "ID",
                   "ofType": null
                 }
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "_id",
-              "description": null,
-              "args": [],
-              "type": {
-                "kind": "SCALAR",
-                "name": "ID",
-                "ofType": null
               },
               "isDeprecated": false,
               "deprecationReason": null

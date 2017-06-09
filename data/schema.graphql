@@ -5,12 +5,11 @@ schema {
 type Address implements Node {
   # The ID of an object
   id: ID!
-  _id: ID
   user: User
   district: District
   address: String
-  delivery_address: String
-  bill_address: String
+  deliveryAddress: String
+  billAddress: String
   reference: String
   name: String
 }
@@ -27,11 +26,10 @@ type AddressEdge {
 type Ads implements Node {
   # The ID of an object
   id: ID!
-  _id: ID
   name: String
   photo: String
   link: String
-  is_archived: Boolean
+  isArchived: Boolean
 }
 
 type AdsConnection {
@@ -46,15 +44,14 @@ type AdsEdge {
 type Brand implements Node {
   # The ID of an object
   id: ID!
-  _id: ID
   company: Company
   name: String
-  name_slugify: String
+  nameSlugify: String
   photo: String
   description: String
-  seo_description: String
-  is_featured: Boolean
-  is_archived: Boolean
+  seoDescription: String
+  isFeatured: Boolean
+  isArchived: Boolean
 }
 
 type BrandConnection {
@@ -75,55 +72,64 @@ type BusinessType {
 type Cart implements Node {
   # The ID of an object
   id: ID!
-  _id: ID
   items: [CartProduct]
   quantity: Int
-  total: Float
+  prices: CartPrices
+}
+
+type CartPrices implements Node {
+  # The ID of an object
+  id: ID!
+  subTotal: Float
+  _subTotal: String
   igv: Float
   _igv: String
+  total: Float
   _total: String
+  minimumOrder: Float
+  _minimumOrder: String
 }
 
 type CartProduct implements Node {
   # The ID of an object
   id: ID!
-  _id: ID
   brand: Brand
   sku: String
   name: String
-  name_slugify: String
+  nameSlugify: String
   photo: String
   presentation: String
   description: String
-  seo_description: String
-  time_life: String
+  seoDescription: String
+  timeLife: String
   offer: Float
   price: Float
-  unit_price: Float
-  suggested_price: Float
+  _price: String
+  unitPrice: Float
+  _unitPrice: String
+  suggestedPrice: Float
   stock: Int
   popularity: Int
   order: Int
-  need_perception: Boolean
-  is_always_in_stock: Boolean
+  needPerception: Boolean
+  isAlwaysInStock: Boolean
   quantity: Int
   categories: [Category]
-  is_featured: Boolean
-  is_archived: Boolean
+  isFeatured: Boolean
+  isArchived: Boolean
 }
 
 type Category implements Node {
   # The ID of an object
   id: ID!
-  _id: ID
   name: String
-  name_slugify: String
+  nameSlugify: String
   photo: String
   description: String
   level: Int
-  is_featured: Boolean
-  parent_id: Int
-  is_archived: Boolean
+  isFeatured: Boolean
+  parentId: Int
+  iArchived: Boolean
   parentCategories: [Category]
   subCategories: [Category]
 }
@@ -140,7 +146,6 @@ type CategoryEdge {
 type Company implements Node {
   # The ID of an object
   id: ID!
-  _id: ID
   name: String
 }
 
@@ -149,7 +154,6 @@ scalar Date
 type District implements Node {
   # The ID of an object
   id: ID!
-  _id: ID
   name: String
 }
 
@@ -169,15 +173,14 @@ type PageInfo {
 type Partner implements Node {
   # The ID of an object
   id: ID!
-  _id: ID
   name: String
-  name_slugify: String
+  nameSlugify: String
   logo: String
   color: String
-  minimun_purchase: Float
-  delivery_message: String
+  minimunPurchase: Float
+  deliveryMessage: String
   ads: [Ads]
-  is_featured: Boolean
+  isFeatured: Boolean
   products: [Product]
   orders: [Purchase]
   carts: [Cart]
@@ -195,7 +198,6 @@ type PartnerEdge {
 type PaymentMethod implements Node {
   # The ID of an object
   id: ID!
-  _id: ID
   meta: String
   name: String
 }
@@ -203,28 +205,31 @@ type PaymentMethod implements Node {
 type Product implements Node {
   # The ID of an object
   id: ID!
-  _id: ID
   brand: Brand
   sku: String
   name: String
-  name_slugify: String
+  nameSlugify: String
   photo: String
   presentation: String
   description: String
-  seo_description: String
-  time_life: String
+  seoDescription: String
+  timeLife: String
   offer: Float
+  _offer: String
   price: Float
-  unit_price: Float
-  suggested_price: Float
+  _price: String
+  unitPrice: Float
+  _unitPrice: String
+  suggestedPrice: Float
   stock: Int
   popularity: Int
+  quantity: Int
   order: Int
-  need_perception: Boolean
-  is_always_in_stock: Boolean
+  needPerception: Boolean
+  isAlwaysInStock: Boolean
   categories: [Category]
-  is_featured: Boolean
-  is_archived: Boolean
+  isFeatured: Boolean
+  isArchived: Boolean
 }
 
 type ProductConnection {
@@ -243,33 +248,33 @@ type Purchase implements Node {
   user: User
   status: PurchaseStatus
   code: String
-  sub_total: Float
+  subTotal: Float
   igv: Float
   total: Float
-  payment_cost: Float
-  shipping_cost: Float
-  _sub_total: String
+  paymentCost: Float
+  shippingCost: Float
+  _subTotal: String
   _igv: String
   _total: String
-  _payment_cost: String
-  _shipping_cost: String
+  _paymentCost: String
+  _shippingCost: String
   receipt: ReceiptType
   ruc: String
   fiscal_name: String
-  fiscal_address: String
+  fiscalAddress: String
   dni: String
-  delivery_address: String
+  deliveryAddress: String
   reference: String
-  created_at: Date
-  delivery_at: Date
-  _created_at: String
-  _delivery_at: String
+  createdAt: Date
+  deliveryAt: Date
+  _createdAt: String
+  _deliveryAt: String
   district: District
   payment: PaymentMethod
   items: [PurchaseItem]
-  bill_doc: String
-  bill_address: String
-  guide_doc: String
+  billDoc: String
+  billAddress: String
+  guideDoc: String
 }
 
 type PurchaseConnection {
@@ -338,7 +343,6 @@ type RootQuery {
 
   # Order
   orders(limit: Int, page: Int): PurchaseConnection
-  districts: [District]
 
   # users
   users(limit: Int, page: Int): UserConnection
@@ -387,6 +391,5 @@ type UserEdge {
 type UserType implements Node {
   # The ID of an object
   id: ID!
-  _id: ID
   name: String
 }
