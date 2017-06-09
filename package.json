@@ -68,6 +68,7 @@
     "babel-plugin-transform-flow-strip-types": "^6.22.0",
     "babel-plugin-transform-object-rest-spread": "^6.23.0",
     "cross-env": "^5.0.0",
+    "cz-conventional-changelog": "^2.0.0",
     "eslint": "^3.19.0",
     "eslint-config-standard": "^10.2.1",
     "eslint-friendly-formatter": "^3.0.0",
@@ -78,12 +79,17 @@
     "eslint-plugin-promise": "^3.5.0",
     "eslint-plugin-standard": "^3.0.1",
     "eslint-watch": "^3.1.0",
+    "flightplan": "0.6.15",
     "flow-bin": "^0.47.0",
     "flow-typed": "^2.1.2",
     "jest": "^20.0.4",
+    "jest-cli": "^19.0.2",
     "nodemon": "^1.11.0",
-    "shx": "^0.2.2",
-    "flightplan": "0.6.15",
-    "jest-cli": "^19.0.2"
+    "shx": "^0.2.2"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
