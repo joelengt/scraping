@@ -21,7 +21,6 @@ export {Partner} from './Partner'
 export {UserType} from './UserType'
 export {CartProduct} from './CartProduct'
 
-
 export {
   Node,
   NodeInterface

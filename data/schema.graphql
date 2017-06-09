@@ -1,0 +1,402 @@
+schema {
+  query: RootQuery
+}
+
+type Address implements Node {
+  # The ID of an object
+  id: ID!
+  _id: ID
+  user: User
+  district: District
+  address: String
+  delivery_address: String
+  bill_address: String
+  reference: String
+  name: String
+}
+
+type AddressConnection {
+  edges: [AddressEdge]
+  pageInfo: PageInfo
+}
+
+type AddressEdge {
+  node: Address
+}
+
+type Ads implements Node {
+  # The ID of an object
+  id: ID!
+  _id: ID
+  name: String
+  photo: String
+  link: String
+  is_archived: Boolean
+}
+
+type AdsConnection {
+  edges: [AdsEdge]
+  pageInfo: PageInfo
+}
+
+type AdsEdge {
+  node: Ads
+}
+
+type Brand implements Node {
+  # The ID of an object
+  id: ID!
+  _id: ID
+  company: Company
+  name: String
+  name_slugify: String
+  photo: String
+  description: String
+  seo_description: String
+  is_featured: Boolean
+  is_archived: Boolean
+}
+
+type BrandConnection {
+  edges: [BrandEdge]
+  pageInfo: PageInfo
+}
+
+type BrandEdge {
+  node: Brand
+}
+
+type BusinessType {
+  id: ID
+  meta: String
+  name: String
+}
+
+type Cart implements Node {
+  # The ID of an object
+  id: ID!
+  _id: ID
+  items: [CartProduct]
+  quantity: Int
+  total: Float
+  igv: Float
+  _igv: String
+  _total: String
+}
+
+type CartProduct implements Node {
+  # The ID of an object
+  id: ID!
+  _id: ID
+  brand: Brand
+  sku: String
+  name: String
+  name_slugify: String
+  photo: String
+  presentation: String
+  description: String
+  seo_description: String
+  time_life: String
+  offer: Float
+  price: Float
+  unit_price: Float
+  suggested_price: Float
+  stock: Int
+  popularity: Int
+  order: Int
+  need_perception: Boolean
+  is_always_in_stock: Boolean
+  quantity: Int
+  categories: [Category]
+  is_featured: Boolean
+  is_archived: Boolean
+}
+
+type Category implements Node {
+  # The ID of an object
+  id: ID!
+  _id: ID
+  name: String
+  name_slugify: String
+  photo: String
+  description: String
+  level: Int
+  is_featured: Boolean
+  parent_id: Int
+  is_archived: Boolean
+  parentCategories: [Category]
+  subCategories: [Category]
+}
+
+type CategoryConnection {
+  edges: [CategoryEdge]
+  pageInfo: PageInfo
+}
+
+type CategoryEdge {
+  node: Category
+}
+
+type Company implements Node {
+  # The ID of an object
+  id: ID!
+  _id: ID
+  name: String
+}
+
+scalar Date
+
+type District implements Node {
+  # The ID of an object
+  id: ID!
+  _id: ID
+  name: String
+}
+
+# An object with an ID
+interface Node {
+  # The id of the object.
+  id: ID!
+}
+
+type PageInfo {
+  count: Int
+  pages: Int
+  hasPrevPage: Boolean
+  hasNextPage: Boolean
+}
+
+type Partner implements Node {
+  # The ID of an object
+  id: ID!
+  _id: ID
+  name: String
+  name_slugify: String
+  logo: String
+  color: String
+  minimun_purchase: Float
+  delivery_message: String
+  ads: [Ads]
+  is_featured: Boolean
+  products: [Product]
+  orders: [Purchase]
+  carts: [Cart]
+}
+
+type PartnerConnection {
+  edges: [PartnerEdge]
+  pageInfo: PageInfo
+}
+
+type PartnerEdge {
+  node: Partner
+}
+
+type PaymentMethod implements Node {
+  # The ID of an object
+  id: ID!
+  _id: ID
+  meta: String
+  name: String
+}
+
+type Product implements Node {
+  # The ID of an object
+  id: ID!
+  _id: ID
+  brand: Brand
+  sku: String
+  name: String
+  name_slugify: String
+  photo: String
+  presentation: String
+  description: String
+  seo_description: String
+  time_life: String
+  offer: Float
+  price: Float
+  unit_price: Float
+  suggested_price: Float
+  stock: Int
+  popularity: Int
+  order: Int
+  need_perception: Boolean
+  is_always_in_stock: Boolean
+  categories: [Category]
+  is_featured: Boolean
+  is_archived: Boolean
+}
+
+type ProductConnection {
+  edges: [ProductEdge]
+  pageInfo: PageInfo
+}
+
+type ProductEdge {
+  node: Product
+}
+
+type Purchase implements Node {
+  # The ID of an object
+  id: ID!
+  _id: ID
+  user: User
+  status: PurchaseStatus
+  code: String
+  sub_total: Float
+  igv: Float
+  total: Float
+  payment_cost: Float
+  shipping_cost: Float
+  _sub_total: String
+  _igv: String
+  _total: String
+  _payment_cost: String
+  _shipping_cost: String
+  receipt: ReceiptType
+  ruc: String
+  fiscal_name: String
+  fiscal_address: String
+  dni: String
+  delivery_address: String
+  reference: String
+  created_at: Date
+  delivery_at: Date
+  _created_at: String
+  _delivery_at: String
+  district: District
+  payment: PaymentMethod
+  items: [PurchaseItem]
+  bill_doc: String
+  bill_address: String
+  guide_doc: String
+}
+
+type PurchaseConnection {
+  edges: [PurchaseEdge]
+  pageInfo: PageInfo
+}
+
+type PurchaseEdge {
+  node: Purchase
+}
+
+type PurchaseItem {
+  id: ID
+  product_id: ID
+  product: Product
+  name: String
+  presentation: String
+  photo: String
+  quantity: Int
+  price: Float
+  _price: String
+  offer: Float
+  _offer: String
+}
+
+type PurchaseStatus {
+  id: ID
+  meta: String
+  name: String
+  color: String
+}
+
+type ReceiptType {
+  id: ID
+  meta: String
+  name: String
+}
+
+type RootQuery {
+  # Fetches an object given its ID
+  node(
+    # The ID of an object
+    id: ID!
+  ): Node
+
+  # Cart
+  cart: Cart
+
+  # categories
+  categories(limit: Int, page: Int): CategoryConnection
+
+  # products
+  products(limit: Int, page: Int): ProductConnection
+
+  # brands
+  brands(limit: Int, page: Int): BrandConnection
+
+  # ads
+  ads(limit: Int, page: Int): AdsConnection
+
+  # business partners
+  partners(limit: Int, page: Int): PartnerConnection
+
+  # Address
+  address(limit: Int, page: Int): AddressConnection
+
+  # Order
+  orders(limit: Int, page: Int): PurchaseConnection
+
+  # purchases
+  orderStatus: [PurchaseStatus]
+
+  # All business types a user can belong
+  businessType: [BusinessType]
+  districts: [District]
+  paymentMethod: [PaymentMethod]
+
+  # Receipt types
+  receiptType: [ReceiptType]
+
+  # users
+  users(limit: Int, page: Int): UserConnection
+}
+
+type User implements Node {
+  # The ID of an object
+  id: ID!
+  _id: ID
+  businessType: BusinessType
+  is_new_buyer: Boolean
+  name: String
+  last_name: String
+  full_name: String
+  photo: String
+  email: String
+  phone: String
+  business_name: String
+  fiscal_name: String
+  fiscal_address: String
+  ruc: String
+  dni: String
+  provider: String
+  onboard_finished: Boolean
+  is_admin: Boolean
+  is_active: Boolean
+  is_email_verified: Boolean
+  is_archived: Boolean
+  created_at: Float
+  updated_at: Float
+  archived_at: Float
+  address: Address
+  orders: [Purchase]
+  user_type: UserType
+}
+
+type UserConnection {
+  edges: [UserEdge]
+  pageInfo: PageInfo
+}
+
+type UserEdge {
+  node: User
+}
+
+type UserType implements Node {
+  # The ID of an object
+  id: ID!
+  _id: ID
+  name: String
+}
