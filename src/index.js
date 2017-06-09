@@ -1,21 +1,17 @@
 import path from 'path'
 import cors from 'cors'
-
 import express from 'express'
 import bodyParser from 'body-parser'
-
 import graphqlHTTP from 'express-graphql'
 import loaders from './loaders'
-
 import schema from './schema'
 
-const debug = require('debug')('riqra-api:server')
+const debug = require('debug')('riqra-api-getaway:server')
 
 const app = express()
+const port = process.env.PORT
 
 app.use(bodyParser.json())
-
-const port = process.env.PORT
 
 app.use('/', cors(), graphqlHTTP((req) => {
   let baseUrl = `${req.protocol}://${req.headers.host}`
