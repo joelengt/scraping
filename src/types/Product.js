@@ -92,6 +92,9 @@ export const Product = new GraphQLObjectType({
     popularity: {
       type: GraphQLInt
     },
+    quantity: {
+      type: GraphQLInt
+    },
     order: {
       type: GraphQLInt
     },

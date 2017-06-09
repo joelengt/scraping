@@ -131,10 +131,10 @@ const RootQuery = new GraphQLObjectType({
     //   description: 'All business types a user can belong',
     //   resolve: () => sql('business_type')
     // },
-    districts: {
-      type: new GraphQLList(District),
-      resolve: () => sql('district')
-    },
+    // districts: {
+    //   type: new GraphQLList(District),
+    //   resolve: () => sql('district')
+    // },
     // paymentMethod: {
     //   type: new GraphQLList(PaymentMethod),
     //   resolve: () => paymentMethodData
