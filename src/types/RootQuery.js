@@ -14,15 +14,15 @@ import {
   User,
   // Searchable,
   // SearchEnum,
-  BusinessType,
-  ReceiptType,
+  // BusinessType,
+  // ReceiptType,
   Product,
-  PurchaseStatus,
+  // PurchaseStatus,
   District,
   Brand,
   Category,
   Cart,
-  PaymentMethod,
+  // PaymentMethod,
   Ads,
   Partner
 } from './'
@@ -121,29 +121,29 @@ const RootQuery = new GraphQLObjectType({
         return paginator(qb, 'purchase.id', args)
       }
     },
-    orderStatus: {
-      type: new GraphQLList(PurchaseStatus),
-      description: 'purchases',
-      resolve: () => sql('purchase_status')
-    },
-    businessType: {
-      type: new GraphQLList(BusinessType),
-      description: 'All business types a user can belong',
-      resolve: () => sql('business_type')
-    },
+    // orderStatus: {
+    //   type: new GraphQLList(PurchaseStatus),
+    //   description: 'purchases',
+    //   resolve: () => sql('purchase_status')
+    // },
+    // businessType: {
+    //   type: new GraphQLList(BusinessType),
+    //   description: 'All business types a user can belong',
+    //   resolve: () => sql('business_type')
+    // },
     districts: {
       type: new GraphQLList(District),
       resolve: () => sql('district')
     },
-    paymentMethod: {
-      type: new GraphQLList(PaymentMethod),
-      resolve: () => paymentMethodData
-    },
-    receiptType: {
-      type: new GraphQLList(ReceiptType),
-      description: 'Receipt types',
-      resolve: () => receiptTypeData
-    },
+    // paymentMethod: {
+    //   type: new GraphQLList(PaymentMethod),
+    //   resolve: () => paymentMethodData
+    // },
+    // receiptType: {
+    //   type: new GraphQLList(ReceiptType),
+    //   description: 'Receipt types',
+    //   resolve: () => receiptTypeData
+    // },
     users: {
       type: connectionWithExtras(User),
       description: 'users',

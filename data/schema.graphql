@@ -338,17 +338,7 @@ type RootQuery {
 
   # Order
   orders(limit: Int, page: Int): PurchaseConnection
-
-  # purchases
-  orderStatus: [PurchaseStatus]
-
-  # All business types a user can belong
-  businessType: [BusinessType]
   districts: [District]
-  paymentMethod: [PaymentMethod]
-
-  # Receipt types
-  receiptType: [ReceiptType]
 
   # users
   users(limit: Int, page: Int): UserConnection
