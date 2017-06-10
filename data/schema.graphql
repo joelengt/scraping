@@ -14,15 +14,6 @@ type Address implements Node {
   name: String
 }
 
-type AddressConnection {
-  edges: [AddressEdge]
-  pageInfo: PageInfo
-}
-
-type AddressEdge {
-  node: Address
-}
-
 type Ads implements Node {
   # The ID of an object
   id: ID!
@@ -186,15 +177,6 @@ type Partner implements Node {
   carts: [Cart]
 }
 
-type PartnerConnection {
-  edges: [PartnerEdge]
-  pageInfo: PageInfo
-}
-
-type PartnerEdge {
-  node: Partner
-}
-
 type PaymentMethod implements Node {
   # The ID of an object
   id: ID!
@@ -277,15 +259,6 @@ type Purchase implements Node {
   guideDoc: String
 }
 
-type PurchaseConnection {
-  edges: [PurchaseEdge]
-  pageInfo: PageInfo
-}
-
-type PurchaseEdge {
-  node: Purchase
-}
-
 type PurchaseItem {
   id: ID
   product_id: ID
@@ -335,17 +308,18 @@ type RootQuery {
   # ads
   ads(limit: Int, page: Int): AdsConnection
 
-  # business partners
-  partners(limit: Int, page: Int): PartnerConnection
+  # business partner
+  partner: Partner
 
-  # Address
-  address(limit: Int, page: Int): AddressConnection
+  # search
+  search: Search
+}
 
-  # Order
-  orders(limit: Int, page: Int): PurchaseConnection
-
-  # users
-  users(limit: Int, page: Int): UserConnection
+type Search implements Node {
+  # The ID of an object
+  id: ID!
+  categories: Category
+  products: [Product]
 }
 
 type User implements Node {
@@ -377,15 +351,6 @@ type User implements Node {
   address: Address
   orders: [Purchase]
   user_type: UserType
-}
-
-type UserConnection {
-  edges: [UserEdge]
-  pageInfo: PageInfo
-}
-
-type UserEdge {
-  node: User
 }
 
 type UserType implements Node {
