@@ -54,7 +54,7 @@ export const Partner = new GraphQLObjectType({
       type: new GraphQLList(Product),
       resolve: (obj) => {
         return sql('business_partner_product as bpp')
-        .where('business_partner_id', obj.id)
+        .where('business_partner_id', 1)
         .limit(20)
         .innerJoin('product', (qb) => {
           qb.on('product.id', 'bpp.product_id')

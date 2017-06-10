@@ -24,7 +24,8 @@ import {
   Cart,
   // PaymentMethod,
   Ads,
-  Partner
+  Partner,
+  Search
 } from './'
 
 import {
@@ -94,33 +95,45 @@ const RootQuery = new GraphQLObjectType({
         return paginator(qb, 'banner.id', args)
       }
     },
-    partners: {
-      type: connectionWithExtras(Partner),
-      description: 'business partners',
-      args: connectionArguments(),
-      resolve: (obj, args, {user}, info) => {
-        let qb = sql('business_partner').orderBy('id', 'DESC')
-        return paginator(qb, 'business_partner.id', args)
+    partner: {
+      type: Partner,
+      description: 'business partner',
+      resolve: () => {
+        return {
+          name: 'riqra',
+          nameSlugify: 'riqra',
+          logo: 'http://someimage.png',
+          color: '#ff00ff',
+          minimunPurchase: 100,
+          deliveryMessage: 'entrega en 48 horas'
+        }
       }
     },
-    address: {
-      type: connectionWithExtras(Address),
-      description: 'Address',
-      args: connectionArguments(),
-      resolve: (obj, args, {user}, info) => {
-        let qb = sql('address').orderBy('id', 'DESC')
-        return paginator(qb, 'address.id', args)
+    search: {
+      type: Search,
+      description: 'search',
+      resolve: () => {
+        return {}
       }
-    },
-    orders: {
-      type: connectionWithExtras(Purchase),
-      description: 'Order',
-      args: connectionArguments(),
-      resolve: (obj, args, {user}, info) => {
-        let qb = sql('purchase').orderBy('id', 'DESC')
-        return paginator(qb, 'purchase.id', args)
-      }
-    },
+    }
+    // address: {
+    //   type: connectionWithExtras(Address),
+    //   description: 'Address',
+    //   args: connectionArguments(),
+    //   resolve: (obj, args, {user}, info) => {
+    //     let qb = sql('address').orderBy('id', 'DESC')
+    //     return paginator(qb, 'address.id', args)
+    //   }
+    // }
+    // orders: {
+    //   type: connectionWithExtras(Purchase),
+    //   description: 'Order',
+    //   args: connectionArguments(),
+    //   resolve: (obj, args, {user}, info) => {
+    //     let qb = sql('purchase').orderBy('id', 'DESC')
+    //     return paginator(qb, 'purchase.id', args)
+    //   }
+    // }
     // orderStatus: {
     //   type: new GraphQLList(PurchaseStatus),
     //   description: 'purchases',
@@ -144,15 +157,15 @@ const RootQuery = new GraphQLObjectType({
     //   description: 'Receipt types',
     //   resolve: () => receiptTypeData
     // },
-    users: {
-      type: connectionWithExtras(User),
-      description: 'users',
-      args: connectionArguments(),
-      resolve: (obj, args, ctx, info) => {
-        let qb = sql('client')
-        return paginator(qb, 'client.id', args)
-      }
-    }
+    // users: {
+    //   type: connectionWithExtras(User),
+    //   description: 'users',
+    //   args: connectionArguments(),
+    //   resolve: (obj, args, ctx, info) => {
+    //     let qb = sql('client')
+    //     return paginator(qb, 'client.id', args)
+    //   }
+    // }
   })
 })
 

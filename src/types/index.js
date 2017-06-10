@@ -21,6 +21,7 @@ export {Partner} from './Partner'
 export {UserType} from './UserType'
 export {CartProduct} from './CartProduct'
 export {CartPrices} from './CartPrices'
+export {Search} from './Search'
 
 export {
   Node,
