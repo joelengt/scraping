@@ -6,7 +6,7 @@ import graphqlHTTP from 'express-graphql'
 import loaders from './loaders'
 import schema from './schema'
 
-const debug = require('debug')('riqra-api-getaway:server')
+var debug = require('debug')('riqra-api-gateway:server')
 
 const app = express()
 const port = process.env.PORT
