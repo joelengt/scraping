@@ -1,4 +1,4 @@
-# Node app boilerplate
+# Riqra Service Ads
 
 A highly scalable and simple boilerplate for server apps.
 
