@@ -64,7 +64,7 @@ class ApiController {
   }
 
   async getById (req, res) {
-    let adsId = req.params.id
+    let adsId = Number(req.params.id)
 
     let adsItem = await sql('banner')
     .where('id', adsId)
@@ -93,7 +93,7 @@ class ApiController {
       return res['400']({}, messages.adsCreateBadRequest)
     }
 
-    let adsItemID = req.params.id
+    let adsItemID = Number(req.params.id)
 
     let adsItemFieldsToUpdate = {
       name: req.body.name,
@@ -118,13 +118,13 @@ class ApiController {
     .spread(noop)
 
     let payload = {
-      id: itemUpdated
+      item: itemUpdated
     }
     return res.ok(payload, messages.adsItemUpdated)
   }
 
   deleteById (req, res) {
-    var adsId = req.params.id
+    var adsId = Number(req.params.id)
 
     sql('banner')
     .where('id', adsId)
@@ -133,7 +133,7 @@ class ApiController {
       if (!itemDeleted) {
         return res['404']({}, messages.adsItemNotFound)
       }
-      return res.ok({}, messages.adsItemDeleted)
+      return res.ok({id: adsId}, messages.adsItemDeleted)
     })
   }
 }
