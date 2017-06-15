@@ -60,7 +60,7 @@ class ApiController {
     let payload = {
       item: adsItem
     }
-    return res.ok(payload, messages.adsItemCreated)
+    return res['201'](payload, messages.adsItemCreated)
   }
 
   async getById (req, res) {

@@ -4,7 +4,6 @@ import logger from 'morgan'
 import methodOverride from 'method-override'
 
 var debug = require('debug')('riqra-service-ads:index')
-
 const app = express()
 const server = require('http').Server(app)
 const port = process.env.PORT
