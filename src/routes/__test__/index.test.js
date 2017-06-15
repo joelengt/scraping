@@ -112,7 +112,7 @@ test('it route ads item by id - GET /api/ads/:id', async () => {
 
 test('it route ads items - GET /api/ads', async () => {
   let response = await service.get(`${URI}/api/ads`)
-  let isArray = response.data.data.ads.length
+  let isArray = response.data.data.items.length
   let val = false
 
   if (isArray > 0) {

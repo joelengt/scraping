@@ -17,7 +17,7 @@ class ApiController {
     }
 
     let payload = {
-      ads: banners
+      items: banners
     }
     return res.ok(payload, messages.itemUpdatedInCart)
   }
