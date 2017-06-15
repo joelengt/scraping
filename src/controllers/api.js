@@ -1,11 +1,11 @@
-var debug = require('debug')('riqra-service-ads:controller-api')
-import messages from '~/src/messages'
+import messages from '../messages'
 
 import {
   noop
-} from '~/src/utils'
+} from '../utils'
 
-var sql = require('~/src/initializers/knex')
+var debug = require('debug')('riqra-service-ads:controller-api')
+var sql = require('../initializers/knex')
 
 class ApiController {
   async getList (req, res) {
