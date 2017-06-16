@@ -35,5 +35,6 @@ const base = {
 module.exports = {
   development: _.assign({debug: true}, base),
   staging: base,
+  test: base,
   production: base
-};
+}

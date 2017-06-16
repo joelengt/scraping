@@ -11,7 +11,7 @@
     "dev:inspect": "npm run build:watch -- --inspect",
     "lint": "eslint --format './node_modules/eslint-friendly-formatter/index.js' src/index.js",
     "lint:watch": "cross-env NODE_ENV=development esw --clear --watch --format './node_modules/eslint-friendly-formatter/index.js' src/index.js",
-    "test": "cross-env NODE_ENV=test jest --config=jest.config.json",
+    "test": "cross-env NODE_ENV=development jest --config=jest.config.json",
     "test:watch": "npm run test -- --watch",
     "test:coverage": "npm run test -- --coverage",
     "migrate": "NODE_ENV=development knex migrate:latest",

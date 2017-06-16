@@ -25,7 +25,7 @@ test('it route create new ads item - POST /api/ads - statusCode 201', async () =
 })
 
 test('it route ads item by id - GET /api/ads/:id - statusCode 200', async () => {
-  let UltimateElement = await sql('banner')
+  let UltimateElement = await sql('ads')
   .orderBy('id', 'desc')
   .limit(1)
   .spread(noop)
@@ -46,7 +46,7 @@ test('it route update ads item by id - PUT /api/ads/:id - statusCode 200', async
     photo: 'http://cdn.image./something.png'
   }
 
-  let UltimateElement = await sql('banner')
+  let UltimateElement = await sql('ads')
   .orderBy('id', 'desc')
   .limit(1)
   .spread(noop)
@@ -56,7 +56,7 @@ test('it route update ads item by id - PUT /api/ads/:id - statusCode 200', async
 })
 
 test('it route delete ads item by id - DELETE /api/ads/:id - statusCode 200', async () => {
-  let UltimateElement = await sql('banner')
+  let UltimateElement = await sql('ads')
   .orderBy('id', 'desc')
   .limit(1)
   .spread(noop)
@@ -89,7 +89,7 @@ test('it route create new ads item - POST /api/ads', async () => {
 
 test('it route ads item by id - GET /api/ads/:id', async () => {
   // Get ultimes item created
-  let UltimateElement = await sql('banner')
+  let UltimateElement = await sql('ads')
   .orderBy('id', 'desc')
   .limit(1)
   .spread(noop)
@@ -129,7 +129,7 @@ test('it route update ads item by id - PUT /api/ads/:id', async () => {
     photo: 'http://cdn.image./something.png'
   }
 
-  let UltimateElement = await sql('banner')
+  let UltimateElement = await sql('ads')
   .orderBy('id', 'desc')
   .limit(1)
   .spread(noop)
@@ -151,7 +151,7 @@ test('it route update ads item by id - PUT /api/ads/:id', async () => {
 })
 
 test('it route delete ads item by id - DELETE /api/ads/:id', async () => {
-  let UltimateElement = await sql('banner')
+  let UltimateElement = await sql('ads')
   .orderBy('id', 'desc')
   .limit(1)
   .spread(noop)
