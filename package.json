@@ -13,7 +13,13 @@
     "lint:watch": "cross-env NODE_ENV=development esw --clear --watch --format './node_modules/eslint-friendly-formatter/index.js' src/index.js",
     "test": "cross-env NODE_ENV=test jest --config=jest.config.json",
     "test:watch": "npm run test -- --watch",
-    "test:coverage": "npm run test -- --coverage"
+    "test:coverage": "npm run test -- --coverage",
+    "migrate": "NODE_ENV=development knex migrate:latest",
+    "rollback": "NODE_ENV=development knex migrate:rollback",
+    "migrate-prod": "NODE_ENV=production knex migrate:latest",
+    "rollback-prod": "NODE_ENV=production knex migrate:rollback",
+    "seed:run": "NODE_ENV=development knex seed:run",
+    "seed:run-prod": "NODE_ENV=production knex seed:run"
   },
   "dependencies": {
     "app-module-path": "^2.2.0",
@@ -49,7 +55,6 @@
     "html-pdf": "^2.1.0",
     "json2csv": "^3.7.3",
     "jsonwebtoken": "^7.4.0",
-    "knex": "^0.13.0",
     "lodash": "4.17.4",
     "method-override": "^2.3.9",
     "moment": "2.18.1",
@@ -90,6 +95,7 @@
     "flow-typed": "^2.1.2",
     "jest": "^20.0.4",
     "jest-cli": "^19.0.2",
+    "knex": "^0.13.0",
     "nodemon": "^1.11.0",
     "shx": "^0.2.2"
   },
