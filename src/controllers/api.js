@@ -10,14 +10,14 @@ var sql = require('../initializers/knex')
 class ApiController {
   async getList (req, res) {
     // Get ads from database
-    let banners = await sql('banner')
+    let ads = await sql('ads')
 
-    if (banners.length === 0) {
+    if (ads.length === 0) {
       return res['404']({}, messages.adsItemNotFound)
     }
 
     let payload = {
-      items: banners
+      items: ads
     }
     return res.ok(payload, messages.itemUpdatedInCart)
   }
@@ -41,14 +41,14 @@ class ApiController {
     }
 
     // Create new ads
-    let adsCreate = await sql('banner')
+    let adsCreate = await sql('ads')
     .insert(adsItemCreate)
     .spread(noop)
 
     let adsId = adsCreate
 
     // Find element ads created
-    let adsItem = await sql('banner')
+    let adsItem = await sql('ads')
     .where('id', adsId)
     .limit(1)
     .spread(noop)
@@ -66,7 +66,7 @@ class ApiController {
   async getById (req, res) {
     let adsId = Number(req.params.id)
 
-    let adsItem = await sql('banner')
+    let adsItem = await sql('ads')
     .where('id', adsId)
     .limit(1)
     .spread(noop)
@@ -102,7 +102,7 @@ class ApiController {
     }
 
     // update attributes
-    let adsItemToUpdated = await sql('banner')
+    let adsItemToUpdated = await sql('ads')
     .update(adsItemFieldsToUpdate)
     .where({id: adsItemID})
 
@@ -112,7 +112,7 @@ class ApiController {
     }
 
     // Find element updated
-    let itemUpdated = await sql('banner')
+    let itemUpdated = await sql('ads')
     .where({id: adsItemID})
     .limit(1)
     .spread(noop)
@@ -126,7 +126,7 @@ class ApiController {
   deleteById (req, res) {
     var adsId = Number(req.params.id)
 
-    sql('banner')
+    sql('ads')
     .where('id', adsId)
     .del()
     .then((itemDeleted) => {
