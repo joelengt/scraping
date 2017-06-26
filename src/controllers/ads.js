@@ -1,10 +1,10 @@
-import messages from '../messages'
+import messages from '~/src/messages'
 
 import {
   noop
-} from '../utils'
+} from '~/src/utils'
 
-var debug = require('debug')('riqra-service-ads:controller-ads')
+var debug = require('debug')('riqra-service-partner:controller-ads')
 var sql = require('../initializers/knex')
 
 class AdsController {

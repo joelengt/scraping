@@ -6,7 +6,7 @@
 		"prebuild": "shx rm -rf dist && shx mkdir -p dist",
 		"build": "cross-env NODE_ENV=production babel src -d dist",
 		"postbuild": "npm run start",
-		"build:watch": "cross-env DEBUG=riqra-service-ads:* NODE_ENV=development nodemon ./server.js --exec 'babel-node'",
+		"build:watch": "cross-env DEBUG=riqra-service-partner:* NODE_ENV=development nodemon ./server.js --exec 'babel-node'",
 		"dev": "npm run build:watch",
 		"dev:inspect": "npm run build:watch -- --inspect",
 		"lint": "eslint --format './node_modules/eslint-friendly-formatter/index.js' src/index.js",

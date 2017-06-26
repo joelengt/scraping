@@ -1,6 +1,6 @@
 import {AdsController} from '~/src/controllers/ads'
 
-var debug = require('debug')('riqra-service-partners:routes-ads')
+var debug = require('debug')('riqra-service-partner:routes-ads')
 
 var adsController = new AdsController()
 

@@ -4,7 +4,7 @@ require('require-self-ref')
 require('app-module-path').addPath('~/lib')
 require('~/lib/json-response')
 
-const debug = require('debug')('riqra-service-ads:server')
+const debug = require('debug')('riqra-service-partner:server')
 
 const path = require('path')
 const home = require('os').homedir()
