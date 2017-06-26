@@ -1,9 +1,9 @@
 var debug = require('debug')('riqra-service-ads:routes')
 
-var apiRouter = require('~/src/routes/api')
+var adsRouter = require('~/src/routes/ads')
 
 module.exports = (app) => {
-  app.use('/api', apiRouter)
+  app.use('/ads', adsRouter)
 
   // Middleware express 401
   app.use((err, req, res, next) => {

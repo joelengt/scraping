@@ -7,7 +7,7 @@ import {
 var debug = require('debug')('riqra-service-ads:controller-api')
 var sql = require('../initializers/knex')
 
-class ApiController {
+class AdsController {
   async getList (req, res) {
     // Get ads from database
     let ads = await sql('ads')
@@ -139,5 +139,5 @@ class ApiController {
 }
 
 export {
-  ApiController
+  AdsController
 }

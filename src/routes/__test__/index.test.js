@@ -1,4 +1,4 @@
-// Test Rotues api
+// Test Rotues
 import {noop} from '../../utils'
 import _ from 'lodash'
 
@@ -13,33 +13,33 @@ var service = axios.create({
 let URI = 'http://' + process.env.HOST + ':' + process.env.PORT
 
 // Testing Status Code
-test('it route create new ads item - POST /api/ads - statusCode 201', async () => {
+test('it route create new ads item - POST /ads - statusCode 201', async () => {
   let body = {
     name: 'pretty banner',
     link: '/something.png',
     photo: 'http://cdn.image./something.png'
   }
 
-  let response = await service.post(`${URI}/api/ads`, body)
+  let response = await service.post(`${URI}/ads`, body)
   expect(response.status).toBe(201)
 })
 
-test('it route ads item by id - GET /api/ads/:id - statusCode 200', async () => {
+test('it route ads item by id - GET /ads/:id - statusCode 200', async () => {
   let UltimateElement = await sql('ads')
   .orderBy('id', 'desc')
   .limit(1)
   .spread(noop)
 
-  let response = await service.get(`${URI}/api/ads/${UltimateElement.id}`)
+  let response = await service.get(`${URI}/ads/${UltimateElement.id}`)
   expect(response.status).toBe(200)
 })
 
-test('it route ads items - GET /api/ads - statusCode 200', async () => {
-  let response = await service.get(`${URI}/api/ads`)
+test('it route ads items - GET /ads - statusCode 200', async () => {
+  let response = await service.get(`${URI}/ads`)
   expect(response.status).toBe(200)
 })
 
-test('it route update ads item by id - PUT /api/ads/:id - statusCode 200', async () => {
+test('it route update ads item by id - PUT /ads/:id - statusCode 200', async () => {
   let body = {
     name: 'pretty banner',
     link: '/something.png',
@@ -51,22 +51,22 @@ test('it route update ads item by id - PUT /api/ads/:id - statusCode 200', async
   .limit(1)
   .spread(noop)
 
-  let response = await service.post(`${URI}/api/ads/${UltimateElement.id}?_method=put`, body)
+  let response = await service.post(`${URI}/ads/${UltimateElement.id}?_method=put`, body)
   expect(response.status).toBe(200)
 })
 
-test('it route delete ads item by id - DELETE /api/ads/:id - statusCode 200', async () => {
+test('it route delete ads item by id - DELETE /ads/:id - statusCode 200', async () => {
   let UltimateElement = await sql('ads')
   .orderBy('id', 'desc')
   .limit(1)
   .spread(noop)
 
-  let response = await service.post(`${URI}/api/ads/${UltimateElement.id}?_method=delete`)
+  let response = await service.post(`${URI}/ads/${UltimateElement.id}?_method=delete`)
   expect(response.status).toBe(200)
 })
 
 // Testing response json
-test('it route create new ads item - POST /api/ads', async () => {
+test('it route create new ads item - POST /ads', async () => {
   let body = {
     name: 'pretty banner',
     link: '/something.png',
@@ -79,7 +79,7 @@ test('it route create new ads item - POST /api/ads', async () => {
     }
   }
 
-  let response = await service.post(`${URI}/api/ads`, body)
+  let response = await service.post(`${URI}/ads`, body)
 
   // ignore date fields
   response.data.data.item = _.pick(response.data.data.item, ['name', 'link', 'photo'])
@@ -87,7 +87,7 @@ test('it route create new ads item - POST /api/ads', async () => {
   expect(response.data.data).toEqual(expected)
 })
 
-test('it route ads item by id - GET /api/ads/:id', async () => {
+test('it route ads item by id - GET /ads/:id', async () => {
   // Get ultimes item created
   let UltimateElement = await sql('ads')
   .orderBy('id', 'desc')
@@ -102,7 +102,7 @@ test('it route ads item by id - GET /api/ads/:id', async () => {
     }
   }
 
-  let response = await service.get(`${URI}/api/ads/${UltimateElement.id}`)
+  let response = await service.get(`${URI}/ads/${UltimateElement.id}`)
 
   // ignore date fields
   response.data.data.item = _.pick(response.data.data.item, ['id', 'name', 'link', 'photo'])
@@ -110,8 +110,8 @@ test('it route ads item by id - GET /api/ads/:id', async () => {
   expect(response.data.data).toEqual(expected)
 })
 
-test('it route ads items - GET /api/ads', async () => {
-  let response = await service.get(`${URI}/api/ads`)
+test('it route ads items - GET /ads', async () => {
+  let response = await service.get(`${URI}/ads`)
   let isArray = response.data.data.items.length
   let val = false
 
@@ -122,7 +122,7 @@ test('it route ads items - GET /api/ads', async () => {
   expect(val).toBe(true)
 })
 
-test('it route update ads item by id - PUT /api/ads/:id', async () => {
+test('it route update ads item by id - PUT /ads/:id', async () => {
   let body = {
     name: 'pretty banner',
     link: '/something.png',
@@ -142,7 +142,7 @@ test('it route update ads item by id - PUT /api/ads/:id', async () => {
     }
   }
 
-  let response = await service.post(`${URI}/api/ads/${UltimateElement.id}?_method=put`, body)
+  let response = await service.post(`${URI}/ads/${UltimateElement.id}?_method=put`, body)
 
   // ignore date fields
   response.data.data.item = _.pick(response.data.data.item, ['id', 'name', 'link', 'photo'])
@@ -150,7 +150,7 @@ test('it route update ads item by id - PUT /api/ads/:id', async () => {
   expect(response.data.data).toEqual(expected)
 })
 
-test('it route delete ads item by id - DELETE /api/ads/:id', async () => {
+test('it route delete ads item by id - DELETE /ads/:id', async () => {
   let UltimateElement = await sql('ads')
   .orderBy('id', 'desc')
   .limit(1)
@@ -160,6 +160,6 @@ test('it route delete ads item by id - DELETE /api/ads/:id', async () => {
     id: UltimateElement.id
   }
 
-  let response = await service.post(`${URI}/api/ads/${UltimateElement.id}?_method=delete`)
+  let response = await service.post(`${URI}/ads/${UltimateElement.id}?_method=delete`)
   expect(response.data.data).toEqual(expected)
 })
