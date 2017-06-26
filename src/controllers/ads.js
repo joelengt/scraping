@@ -4,7 +4,7 @@ import {
   noop
 } from '../utils'
 
-var debug = require('debug')('riqra-service-ads:controller-api')
+var debug = require('debug')('riqra-service-ads:controller-ads')
 var sql = require('../initializers/knex')
 
 class AdsController {
@@ -43,9 +43,24 @@ class AdsController {
     // Create new ads
     let adsCreate = await sql('ads')
     .insert(adsItemCreate)
+    .returning('*')
+    .catch((err) => {
+      let payload = {
+        status: 400,
+        data: {
+          error: err.detail
+        },
+        message: 'Error en los campos'
+      }
+      return payload
+    })
     .spread(noop)
 
-    let adsId = adsCreate
+    if (adsCreate.status) {
+      return res['404']({}, messages.adsItemNotFound)
+    }
+
+    let adsId = adsCreate.id
 
     // Find element ads created
     let adsItem = await sql('ads')

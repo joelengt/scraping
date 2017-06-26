@@ -64,6 +64,7 @@
 		"mysql": "2.13.0",
 		"newrelic": "^1.39.0",
 		"numeral": "^2.0.6",
+		"pg": "^6.4.0",
 		"redis": "latest",
 		"require-self-ref": "^2.0.1",
 		"sinon": "^2.3.4",

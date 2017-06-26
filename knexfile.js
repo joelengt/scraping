@@ -12,12 +12,14 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 const base = {
-  client: 'mysql',
+  client: 'pg',
+  version: '9.6',
   connection: {
-    host: process.env.MYSQL_HOST,
-    user: process.env.MYSQL_USER,
-    password: process.env.MYSQL_PASSWORD,
-    database: process.env.MYSQL_DATABASE
+    host: process.env.POSTGRE_SQL_HOST,
+    port: process.env.POSTGRE_SQL_PORT,
+    user: process.env.POSTGRE_SQL_USER,
+    password: process.env.POSTGRE_SQL_PASSWORD,
+    database: process.env.POSTGRE_SQL_DATABASE
   },
   pool: {
     min: 2,
