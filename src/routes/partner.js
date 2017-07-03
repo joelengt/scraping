@@ -8,10 +8,10 @@ var express = require('express')
 var router = express.Router()
 
 router.get('/find-slugify/:partnerSlugify', partnerController.getBySlugify)
-// router.get('/', partnerController.getList)
-// router.post('/', partnerController.create)
-// router.get('/:id', partnerController.getById)
-// router.put('/:id', partnerController.updateById)
-// router.delete('/:id', partnerController.deleteById)
+router.get('/', partnerController.getList)
+router.post('/', partnerController.create)
+router.get('/:id', partnerController.getById)
+router.put('/:id', partnerController.updateById)
+router.delete('/:id', partnerController.deleteById)
 
 module.exports = router
