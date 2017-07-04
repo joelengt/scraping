@@ -1,16 +1,30 @@
 import {AdsController} from '~/src/controllers/ads'
 
 var debug = require('debug')('riqra-service-partner:routes-ads')
+const { validateParam, validateBody, schemas } = require('~/src/utils')
 
 var adsController = new AdsController()
 
 var express = require('express')
 var router = express.Router()
 
-router.get('/partner/:partnerId', adsController.getList)
-router.post('/partner/:partnerId', adsController.create)
-router.get('/:id/partner/:partnerId', adsController.getById)
-router.put('/:id/partner/:partnerId', adsController.updateById)
-router.delete('/:id/partner/:partnerId', adsController.deleteById)
+router.route('/partner/:partnerId')
+  .get(validateParam(schemas.partIDSchema),
+      adsController.getList)
+
+router.route('/partner')
+  .post(validateBody(schemas.adsSchema),
+      adsController.create)
+
+router.route('/:id/partner/:partnerId')
+  .get(validateParam(schemas.adsIDSchema),
+      adsController.getById)
+
+  .put(validateParam(schemas.adsIDSchema),
+      validateBody(schemas.adsUpdatedSchema),
+      adsController.updateById)
+
+  .delete(validateParam(schemas.adsIDSchema),
+      adsController.deleteById)
 
 module.exports = router

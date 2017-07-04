@@ -1,17 +1,29 @@
 import {PartnerController} from '~/src/controllers/partner'
 
 var debug = require('debug')('riqra-service-partner:routes-partners')
+const { validateParam, validateBody, schemas } = require('~/src/utils')
 
-var partnerController = new PartnerController()
+var partnerController = new PartnerController()  // export from index
 
 var express = require('express')
 var router = express.Router()
 
-router.get('/find-slugify/:partnerSlugify', partnerController.getBySlugify)
-router.get('/', partnerController.getList)
-router.post('/', partnerController.create)
-router.get('/:id', partnerController.getById)
-router.put('/:id', partnerController.updateById)
-router.delete('/:id', partnerController.deleteById)
+router.route('/find-slugify/:partnerSlugify')
+  .get(validateParam(schemas.partnerSlugifySchema),
+      partnerController.getBySlugify)
+
+router.route('/')
+  .get(partnerController.getList)
+  .post(validateBody(schemas.partnerSchema), partnerController.create)
+
+router.route('/:id')
+  .get(validateParam(schemas.partnerIDSchema), partnerController.getById)
+
+  .put(validateParam(schemas.partnerIDSchema),
+      validateBody(schemas.partnerSchema),
+      partnerController.updateById)
+
+  .delete(validateParam(schemas.partnerIDSchema),
+      partnerController.deleteById)
 
 module.exports = router

@@ -54,6 +54,7 @@
 		"graphql-relay": "^0.5.1",
 		"graphql-type-json": "^0.1.4",
 		"html-pdf": "^2.1.0",
+		"joi": "^10.6.0",
 		"json2csv": "^3.7.3",
 		"jsonwebtoken": "^7.4.0",
 		"lodash": "4.17.4",

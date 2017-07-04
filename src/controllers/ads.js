@@ -9,7 +9,7 @@ var sql = require('../initializers/knex')
 class AdsController {
   async getList (req, res) {
     // Get uri param partnerId
-    let partnerId = Number(req.params.partnerId)
+    let partnerId = req.params.partnerId
 
     try {
       // Get ads from database
@@ -32,27 +32,11 @@ class AdsController {
   }
 
   async create (req, res) {
-    // Validate body data
-    if (req.body.name === undefined ||
-      req.body.photo === undefined ||
-      req.body.link === undefined ||
-      req.body.partner_id === undefined ||
-      req.body.name === '' ||
-      req.body.photo === '' ||
-      req.body.link === '' ||
-      req.body.partner_id === '') {
-      return res['400']({success: false}, messages.adsFieldBadRequest)
-    }
     // Get uri param partnerId
     let partnerId = req.params.partnerId
 
     // Get body data to craete a new ads
-    let adsItemCreate = {
-      name: req.body.name,
-      photo: req.body.photo,
-      link: req.body.link,
-      partner_id: Number(partnerId)
-    }
+    let adsItemCreate = req.body
 
     try {
       // Create new ads
@@ -90,8 +74,8 @@ class AdsController {
 
   async getById (req, res) {
     // Get uri params id, partnerId
-    let adsId = Number(req.params.id)
-    let partnerId = Number(req.params.partnerId)
+    let adsId = req.params.id
+    let partnerId = req.params.partnerId
 
     try {
       // Find ads by id, partnerId on DB
@@ -116,25 +100,12 @@ class AdsController {
   }
 
   async updateById (req, res) {
-    // Validate body data
-    if (req.body.name === undefined ||
-      req.body.photo === undefined ||
-      req.body.link === undefined ||
-      req.body.name === '' ||
-      req.body.photo === '' ||
-      req.body.link === '') {
-      return res['400']({}, messages.adsFieldBadRequest)
-    }
     // Get uri params id, partnerId
-    let adsItemID = Number(req.params.id)
-    let partnerId = Number(req.params.partnerId)
+    let adsItemID = req.params.id
+    let partnerId = req.params.partnerId
 
     // Get body data to craete a new ads
-    let adsItemFieldsToUpdate = {
-      name: req.body.name,
-      photo: req.body.photo,
-      link: req.body.link
-    }
+    let adsItemFieldsToUpdate = req.body
 
     try {
       // update attributes on DB
@@ -165,8 +136,8 @@ class AdsController {
 
   async deleteById (req, res) {
     // Get uri params id, partnerId
-    let adsId = Number(req.params.id)
-    let partnerId = Number(req.params.partnerId)
+    let adsId = req.params.id
+    let partnerId = req.params.partnerId
 
     try {
       // Delete ads by id, partnerId on DB

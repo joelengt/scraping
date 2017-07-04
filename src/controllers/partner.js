@@ -1,5 +1,4 @@
 import messages from '~/src/messages'
-
 import {
   noop
 } from '~/src/utils'
@@ -9,26 +8,28 @@ var sql = require('../initializers/knex')
 
 class PartnerController {
   async getBySlugify (req, res) {
-    try {
-      let partnerSlugify = req.params.partnerSlugify
+    // Get uri param by partnerSlugify
+    let partnerSlugify = req.params.partnerSlugify
 
-      // find partner by slugify
+    try {
+      // find partner by slugify on DB
       let partner = await sql('partner')
       .where('name_slugify', partnerSlugify)
       .limit(1)
       .spread(noop)
 
+      // validate if partner was found
       if (!partner) {
-        return res['404']({success: false}, 'The partner slugify is not found')
+        return res['404']({success: false}, messages.partnerNotFound)
       }
 
       let payload = {
         item: partner
       }
 
-      return res.ok(payload, 'partner found')
+      return res.ok(payload, messages.partnerFound)
     } catch (err) {
-      res['404']({success: false}, err)
+      res['400']({success: false}, err)
     }
   }
 
@@ -37,38 +38,26 @@ class PartnerController {
       // Get partner from database
       let partner = await sql('partner')
 
-      if (partner.length === 0) {
-        return res['404']({success: false}, messages.partnerItemNotFound)
+      // Validate if partner was found
+      if (!partner.length) {
+        return res['404']({success: false}, messages.partnerNotFound)
       }
 
       let payload = {
         items: partner
       }
-      return res.ok(payload, messages.itemUpdatedInCart)
+
+      return res.ok(payload, messages.partnerFound)
     } catch (err) {
-      res['404']({success: false}, err)
+      res['400']({success: false}, err)
     }
   }
 
   async create (req, res) {
+    // Get body data
+    let partnerItemCreate = req.body
+
     try {
-      // Validate body data
-      if (req.body.name === undefined ||
-        req.body.logo === undefined ||
-        req.body.nameSlugify === undefined ||
-        req.body.name === '' ||
-        req.body.logo === '' ||
-        req.body.nameSlugify === '') {
-        return res['400']({success: false}, messages.partnerCreateBadRequest)
-      }
-
-      // Get body data
-      let partnerItemCreate = {
-        name: req.body.name,
-        logo: req.body.logo,
-        name_slugify: req.body.nameSlugify
-      }
-
       // Create new partner
       let partnerCreate = await sql('partner')
       .insert(partnerItemCreate)
@@ -83,70 +72,63 @@ class PartnerController {
       .limit(1)
       .spread(noop)
 
-      if (partnerItem === undefined) {
-        return res['404']({success: false}, messages.partnerItemNotFound)
+      // Validate if partner was found
+      if (!partnerItem) {
+        return res['404']({success: false}, messages.partnerFound)
       }
 
       let payload = {
         item: partnerItem
       }
-      return res['201'](payload, messages.partnerItemCreated)
+
+      return res['201'](payload, messages.partnerCreated)
     } catch (err) {
-      res['404']({success: false}, err)
+      res['400']({success: false}, err)
     }
   }
 
   async getById (req, res) {
-    try {
-      let partnerId = Number(req.params.id)
+    // Get uri params id
+    let partnerId = req.params.id
 
+    try {
+      // Find parner by id on DB
       let partnerItem = await sql('partner')
       .where('id', partnerId)
       .limit(1)
       .spread(noop)
 
-      // Validate element found
-      if (partnerItem === undefined) {
-        return res['404']({success: false}, messages.partnerItemNotFound)
+      // Validate if element was found
+      if (!partnerItem) {
+        return res['404']({success: false}, messages.partnerNotFound)
       }
 
       let payload = {
         item: partnerItem
       }
-      return res.ok(payload, messages.partnerItem)
+
+      return res.ok(payload, messages.partnerFound)
     } catch (err) {
-      res['404']({success: false}, err)
+      res['400']({success: false}, err)
     }
   }
 
   async updateById (req, res) {
+    // Get uri params id
+    let partnerItemID = req.params.id
+
+    // Get body attributes
+    let partnerItemFieldsToUpdate = req.body
+
     try {
-      // Validate body data
-      if (req.body.name === undefined ||
-        req.body.logo === undefined ||
-        req.body.nameSlugify === undefined ||
-        req.body.name === '' ||
-        req.body.logo === '' ||
-        req.body.nameSlugify === '') {
-        return res['400']({success: false}, messages.partnerCreateBadRequest)
-      }
-
-      let partnerItemID = Number(req.params.id)
-
-      let partnerItemFieldsToUpdate = {
-        name: req.body.name,
-        logo: req.body.logo,
-        name_slugify: req.body.nameSlugify
-      }
-
-      // update attributes
+      // update attributes on DB
       let partnerItemToUpdated = await sql('partner')
       .update(partnerItemFieldsToUpdate)
-      .where({id: partnerItemID})
+      .where({'id': partnerItemID})
 
       // Validate element updated
       if (!partnerItemToUpdated) {
-        return res['404']({success: false}, messages.partnerItemNotFound)
+        return res['404']({success: false}, messages.partnerNotFound)
       }
 
       // Find element updated
@@ -158,26 +140,30 @@ class PartnerController {
       let payload = {
         item: itemUpdated
       }
-      return res.ok(payload, messages.partnerItemUpdated)
+
+      return res.ok(payload, messages.partnerUpdated)
     } catch (err) {
-      res['404']({success: false}, err)
+      res['400']({success: false}, err)
     }
   }
 
   async deleteById (req, res) {
-    try {
-      var partnerId = Number(req.params.id)
+    // Get uri params id
+    var partnerId = req.params.id
 
+    try {
       let partner = await sql('partner')
       .where('id', partnerId)
       .del()
 
+      // Validate if partner was found
       if (!partner) {
-        return res['404']({success: false}, messages.partnerItemNotFound)
+        return res['404']({success: false}, messages.partnerNotFound)
       }
-      return res.ok({id: partnerId}, messages.partnerItemDeleted)
+
+      return res.ok({id: partnerId}, messages.partnerDeleted)
     } catch (err) {
-      return res['404']({success: false}, err)
+      return res['400']({success: false}, err)
     }
   }
 }
