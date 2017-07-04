@@ -9,9 +9,13 @@ var sql = require('../initializers/knex')
 
 class AdsController {
   async getList (req, res) {
+    let partnerId =  Number(req.params.id)
+    debug('partner', partnerId)
+    debug(req.params)
     try {
       // Get ads from database
       let ads = await sql('ads')
+      .where('partner_id', partnerId)
 
       if (ads.length === 0) {
         return res['404']({success: false}, messages.adsItemNotFound)
@@ -32,9 +36,11 @@ class AdsController {
       if (req.body.name === undefined ||
         req.body.photo === undefined ||
         req.body.link === undefined ||
+        req.body.partner_id === undefined ||
         req.body.name === '' ||
         req.body.photo === '' ||
-        req.body.link === '') {
+        req.body.link === '' ||
+        req.body.partner_id === '') {
         return res['400']({success: false}, messages.adsCreateBadRequest)
       }
 
@@ -42,7 +48,8 @@ class AdsController {
       let adsItemCreate = {
         name: req.body.name,
         photo: req.body.photo,
-        link: req.body.link
+        link: req.body.link,
+        partner_id: Number(req.body.partner_id)
       }
 
       // Create new ads
