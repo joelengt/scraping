@@ -7,10 +7,10 @@ var adsController = new AdsController()
 var express = require('express')
 var router = express.Router()
 
-router.get('/', adsController.getList)
-router.post('/', adsController.create)
-router.get('/:id', adsController.getById)
-router.put('/:id', adsController.updateById)
-router.delete('/:id', adsController.deleteById)
+router.get('/partner/:partnerId', adsController.getList)
+router.post('/partner/:partnerId', adsController.create)
+router.get('/:id/partner/:partnerId', adsController.getById)
+router.put('/:id/partner/:partnerId', adsController.updateById)
+router.delete('/:id/partner/:partnerId', adsController.deleteById)
 
 module.exports = router

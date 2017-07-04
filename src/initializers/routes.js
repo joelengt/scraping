@@ -4,7 +4,7 @@ var adsRouter = require('~/src/routes/ads')
 var partnerRouter = require('~/src/routes/partner')
 
 module.exports = (app) => {
-  app.use('/api/partner/:partnerId/ads', adsRouter)
+  app.use('/api/ads', adsRouter)
   app.use('/api/partner', partnerRouter)
 
   // Middleware express 401
