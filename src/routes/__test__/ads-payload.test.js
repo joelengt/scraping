@@ -31,7 +31,7 @@ test('it route create new ads item - POST /ads', async () => {
   let response = await service.post(endpoint, body)
 
   // ignore date fields
-  response.data.data.item = _.pick(response.data.data.item, ['name', 'link', 'photo'])
+  response.data.data.item = _.omit(response.data.data.item, ['id', 'partner_id', 'created_at', 'updated_at'])
 
   expect(response.data.data).toEqual(expected)
 })
@@ -43,7 +43,7 @@ test('it route ads item by id - GET /ads/:id', async () => {
   .limit(1)
   .spread(noop)
 
-  UltimateElement = _.pick(UltimateElement, ['id', 'name', 'link', 'photo'])
+  UltimateElement = _.omit(UltimateElement, ['created_at', 'updated_at'])
 
   let expected = {
     item: {
@@ -57,7 +57,7 @@ test('it route ads item by id - GET /ads/:id', async () => {
   let response = await service.get(endpoint)
 
   // ignore date fields
-  response.data.data.item = _.pick(response.data.data.item, ['id', 'name', 'link', 'photo'])
+  response.data.data.item = _.omit(response.data.data.item, ['created_at', 'updated_at'])
 
   expect(response.data.data).toEqual(expected)
 })
@@ -88,7 +88,7 @@ test('it route update ads item by id - PUT /ads/:id', async () => {
   .limit(1)
   .spread(noop)
 
-  UltimateElement = _.pick(UltimateElement, ['id', 'name', 'link', 'photo'])
+  UltimateElement = _.omit(UltimateElement, ['created_at', 'updated_at'])
 
   let expected = {
     item: {
@@ -102,7 +102,7 @@ test('it route update ads item by id - PUT /ads/:id', async () => {
   let response = await service.post(endpoint, body)
 
   // ignore date fields
-  response.data.data.item = _.pick(response.data.data.item, ['id', 'name', 'link', 'photo'])
+  response.data.data.item = _.omit(response.data.data.item, ['created_at', 'updated_at'])
 
   expect(response.data.data).toEqual(expected)
 })
