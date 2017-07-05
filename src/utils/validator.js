@@ -72,6 +72,20 @@ export const schemas = {
     is_featured: Joi.string(),
     is_guest_enabled_to_buy: Joi.string()
   }),
+  partnerOptionalSchema: Joi.object().keys({
+    name: Joi.string(),
+    name_slugify: Joi.string(),
+    logo: Joi.string(),
+    background_color: Joi.string(),
+    product_add_button_color: Joi.string(),
+    cart_button_color: Joi.string(),
+    product_info_color: Joi.string(),
+    product_arrows_color: Joi.string(),
+    minimum_purchase: Joi.string(),
+    delivery_message: Joi.string(),
+    is_featured: Joi.string(),
+    is_guest_enabled_to_buy: Joi.string()
+  }),
   adsSchema: Joi.object().keys({
     name: Joi.string().required(),
     photo: Joi.string().required(),
@@ -81,5 +95,10 @@ export const schemas = {
     name: Joi.string().required(),
     photo: Joi.string().required(),
     link: Joi.string().required()
+  }),
+  adsOptionalSchema: Joi.object().keys({
+    name: Joi.string(),
+    photo: Joi.string(),
+    link: Joi.string()
   })
 }

@@ -147,6 +147,40 @@ class PartnerController {
     }
   }
 
+  async updateOptionalById (req, res) {
+    // Get uri params id
+    let partnerItemID = req.params.id
+
+    // Get body attributes
+    let partnerItemFieldsToUpdate = req.body
+
+    try {
+      // update attributes on DB
+      let partnerItemToUpdated = await sql('partner')
+      .update(partnerItemFieldsToUpdate)
+      .where({'id': partnerItemID})
+
+      // Validate element updated
+      if (!partnerItemToUpdated) {
+        return res['404']({success: false}, messages.partnerNotFound)
+      }
+
+      // Find element updated
+      let itemUpdated = await sql('partner')
+      .where({id: partnerItemID})
+      .limit(1)
+      .spread(noop)
+
+      let payload = {
+        item: itemUpdated
+      }
+
+      return res.ok(payload, messages.partnerUpdated)
+    } catch (err) {
+      res['400']({success: false}, err)
+    }
+  }
+
   async deleteById (req, res) {
     // Get uri params id
     var partnerId = req.params.id

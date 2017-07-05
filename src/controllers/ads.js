@@ -135,6 +135,41 @@ class AdsController {
     }
   }
 
+  async updateOptionalById (req, res) {
+    // Get uri params id, partnerId
+    let adsItemID = req.params.id
+    let partnerId = req.params.partnerId
+
+    // Get body data to craete a new ads
+    let adsItemFieldsToUpdate = req.body
+
+    try {
+      // update attributes on DB
+      let adsItemToUpdated = await sql('ads')
+      .update(adsItemFieldsToUpdate)
+      .where({'id': adsItemID, 'partner_id': partnerId})
+
+      // Validate if element was updated
+      if (!adsItemToUpdated) {
+        return res['404']({success: false}, messages.adsItemNotFound)
+      }
+
+      // Find element updated
+      let itemUpdated = await sql('ads')
+      .where({'id': adsItemID, 'partner_id': partnerId})
+      .limit(1)
+      .spread(noop)
+
+      let payload = {
+        item: itemUpdated
+      }
+
+      return res.ok(payload, messages.adsItemUpdated)
+    } catch (err) {
+      res['404']({success: false}, err)
+    }
+  }
+
   async deleteById (req, res) {
     // Get uri params id, partnerId
     let adsId = req.params.id

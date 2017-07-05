@@ -23,6 +23,10 @@ router.route('/:id')
       validateBody(schemas.partnerSchema),
       partnerController.updateById)
 
+  .patch(validateParam(schemas.partnerIDSchema),
+      validateBody(schemas.partnerOptionalSchema),
+      partnerController.updateOptionalById)
+
   .delete(validateParam(schemas.partnerIDSchema),
       partnerController.deleteById)
 

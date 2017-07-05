@@ -24,6 +24,10 @@ router.route('/:id/partner/:partnerId')
       validateBody(schemas.adsUpdatedSchema),
       adsController.updateById)
 
+  .patch(validateParam(schemas.adsIDSchema),
+      validateBody(schemas.adsOptionalSchema),
+      adsController.updateOptionalById)
+
   .delete(validateParam(schemas.adsIDSchema),
       adsController.deleteById)
 
