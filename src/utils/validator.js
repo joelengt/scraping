@@ -73,7 +73,6 @@ export const schemas = {
     is_guest_enabled_to_buy: Joi.string()
   }),
   adsSchema: Joi.object().keys({
-    partner_id: Joi.number().required(),
     name: Joi.string().required(),
     photo: Joi.string().required(),
     link: Joi.string().required()

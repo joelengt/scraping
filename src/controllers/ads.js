@@ -37,6 +37,7 @@ class AdsController {
 
     // Get body data to craete a new ads
     let adsItemCreate = req.body
+    adsItemCreate.partner_id = partnerId
 
     try {
       // Create new ads

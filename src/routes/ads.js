@@ -12,8 +12,8 @@ router.route('/partner/:partnerId')
   .get(validateParam(schemas.partIDSchema),
       adsController.getList)
 
-router.route('/partner')
-  .post(validateBody(schemas.adsSchema),
+  .post(validateParam(schemas.partIDSchema),
+      validateBody(schemas.adsSchema),
       adsController.create)
 
 router.route('/:id/partner/:partnerId')
