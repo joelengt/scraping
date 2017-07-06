@@ -1,0 +1,56 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "definitions": {},
+    "id": "http://example.com/example.json",
+    "properties": {
+        "data": {
+            "id": "/properties/data",
+            "properties": {
+                "item": {
+                    "id": "/properties/data/properties/item",
+                    "properties": {
+                        "created_at": {
+                            "id": "/properties/data/properties/item/properties/created_at",
+                            "type": "string"
+                        },
+                        "id": {
+                            "id": "/properties/data/properties/item/properties/id",
+                            "type": "integer"
+                        },
+                        "link": {
+                            "id": "/properties/data/properties/item/properties/link",
+                            "type": "string"
+                        },
+                        "name": {
+                            "id": "/properties/data/properties/item/properties/name",
+                            "type": "string"
+                        },
+                        "partner_id": {
+                            "id": "/properties/data/properties/item/properties/partner_id",
+                            "type": "integer"
+                        },
+                        "photo": {
+                            "id": "/properties/data/properties/item/properties/photo",
+                            "type": "string"
+                        },
+                        "updated_at": {
+                            "id": "/properties/data/properties/item/properties/updated_at",
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                }
+            },
+            "type": "object"
+        },
+        "message": {
+            "id": "/properties/message",
+            "type": "string"
+        },
+        "status": {
+            "id": "/properties/status",
+            "type": "integer"
+        }
+    },
+    "type": "object"
+}
