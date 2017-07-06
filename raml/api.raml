@@ -290,7 +290,7 @@ mediaType: application/json
             _method:
               displayName: _method
               type: string
-              description: _method=put - HTTP DELETE
+              description: _method=delete - HTTP DELETE
               example: delete
               required: true
           headers:
@@ -329,3 +329,507 @@ mediaType: application/json
                       },
                       "message": "El elemento ads fue eliminado"
                     }
+
+
+/partner:
+  description: Partner API
+  get:
+    description: Get partner list
+    headers:
+      Content-Type:
+        type: string
+    responses:
+      200:
+        body:
+          application/json:
+            schema: !include schemas/partner/partner-response-200.schema
+            example: |
+              {
+                "status": 200,
+                "data": {
+                    "items": [
+                        {
+                            "id": 1,
+                            "name": "P&G",
+                            "name_slugify": "Procter-y-Gamble",
+                            "logo": "https://res.cloudinary.com/riqra/image/upload/v1496525749/web/riqra-partner-logo.png",
+                            "background_color": "#00bbff",
+                            "product_add_button_color": "#00bb11",
+                            "cart_button_color": "#11bbaa",
+                            "product_info_color": "#00bbff",
+                            "product_arrows_color": "#00bbff",
+                            "minimum_purchase": "120.00",
+                            "delivery_message": "Entrega en 48 horas",
+                            "is_featured": true,
+                            "is_guest_enabled_to_buy": false,
+                            "created_at": "2017-07-03T23:52:30.044Z",
+                            "updated_at": "2017-07-03T23:52:30.044Z",
+                            "archived_at": null
+                        },
+                        {
+                            "id": 2,
+                            "name": "laive",
+                            "name_slugify": "laive",
+                            "logo": "https://res.cloudinary.com/riqra/image/upload/v1496525749/web/riqra-partner-logo.png",
+                            "background_color": "#005497",
+                            "product_add_button_color": "#00bb11",
+                            "cart_button_color": "#11bbaa",
+                            "product_info_color": "#00bbff",
+                            "product_arrows_color": "#00bbff",
+                            "minimum_purchase": "80.00",
+                            "delivery_message": "Entrega en 48 horas",
+                            "is_featured": true,
+                            "is_guest_enabled_to_buy": true,
+                            "created_at": "2017-07-03T23:52:30.044Z",
+                            "updated_at": "2017-07-03T23:52:30.044Z",
+                            "archived_at": null
+                        }
+                    ]
+                },
+                "message": "El partner fue encontrado"
+              }
+  post:
+    description: Create a new partner
+    headers:
+      Content-Type:
+        type: string
+    body:
+      schema: !include schemas/partner/partner-request.schema
+      example: |
+        {
+          "name_slugify": "cromlu3",
+          "logo": "/something.AAA",
+          "name": "cromlu sac",
+          "background_color": "dasdd",
+          "product_add_button_color": "dasdsad",
+          "cart_button_color": "dasdd",
+          "product_info_color": "dasdsad",
+          "product_arrows_color": "dasdasdd",
+          "delivery_message": "asda dasdas ddasd",
+          "is_featured": false,
+          "is_guest_enabled_to_buy": true,
+          "minimum_purchase": "105.50"
+        }
+    responses:
+      201:
+        body:
+          application/json:
+            schema: !include schemas/partner/partner-response-200.schema
+            example: |
+              {
+                "status": 201,
+                "data": {
+                    "item": {
+                        "id": 1,
+                        "name": "P&G",
+                        "name_slugify": "Procter-y-Gamble",
+                        "logo": "https://res.cloudinary.com/riqra/image/upload/v1496525749/web/riqra-partner-logo.png",
+                        "background_color": "00bbff",
+                        "product_add_button_color": "00bb11",
+                        "cart_button_color": "11bbaa",
+                        "product_info_color": "00bbff",
+                        "product_arrows_color": "00bbff",
+                        "minimum_purchase": "120.00",
+                        "delivery_message": "Entrega en 48 horas",
+                        "is_featured": true,
+                        "is_guest_enabled_to_buy": false,
+                        "created_at": "2017-07-03T23:52:30.044Z",
+                        "updated_at": "2017-07-03T23:52:30.044Z",
+                        "archived_at": null
+                    }
+                },
+                "message": "El partner fue creado exitosamente"
+              }
+
+  /{id}:
+    description: Partner by id
+    uriParameters:
+      id:
+        description: The partner id
+        type: number
+        example: 1
+    get:
+      description: get a partner by id
+      headers:
+        Content-Type:
+          type: string
+      responses:
+        200:
+          body:
+            application/json:
+              schema: !include schemas/partner/partner-response-200.schema
+              example: |
+                {
+                  "status": 200,
+                  "data": {
+                    "item": {
+                      "id": 1,
+                      "name": "P&G",
+                      "name_slugify": "Procter-y-Gamble",
+                      "logo": "https://res.cloudinary.com/riqra/image/upload/v1496525749/web/riqra-partner-logo.png",
+                      "background_color": "00bbff",
+                      "product_add_button_color": "00bb11",
+                      "cart_button_color": "11bbaa",
+                      "product_info_color": "00bbff",
+                      "product_arrows_color": "00bbff",
+                      "minimum_purchase": "120.00",
+                      "delivery_message": "Entrega en 48 horas",
+                      "is_featured": true,
+                      "is_guest_enabled_to_buy": false,
+                      "created_at": "2017-07-03T23:52:30.044Z",
+                      "updated_at": "2017-07-03T23:52:30.044Z",
+                      "archived_at": null
+                    }
+                  },
+                  "message": "El partner fue encontrado"
+                  }
+        400:
+          body:
+            application/json:
+              schema: !include schemas/partner/partner-response-400.schema
+              example: |
+                {
+                  "status": 400,
+                  "data": {
+                    "success": false,
+                    "validator": {
+                      "isJoi": true,
+                      "name": "ValidationError",
+                      "details": [
+                          {
+                            "message": "\"id\" must be a number",
+                            "path": "id",
+                            "type": "number.base",
+                            "context": {
+                              "key": "id"
+                            }
+                          }
+                        ],
+                        "_object": {
+                            "id": "dsadd"
+                        }
+                      }
+                  },
+                  "message": "Los campos nos son validos"
+                }
+        404:
+          body:
+            application/json:
+              schema: !include schemas/partner/partner-response-404.schema
+              example: |
+                {
+                  "status": 404,
+                  "data": {
+                    "success": false
+                  },
+                  "message": "El partner no fue encontrado"
+                }
+    put:
+      description: Update a partner by id
+      queryParameters:
+        _method:
+          displayName: _method
+          type: string
+          description: _method=put - HTTP UPDATE
+          example: put
+          required: true
+      headers:
+        Content-Type:
+          type: string
+      body:
+        schema: !include schemas/partner/partner-request.schema
+        example: |
+          {
+            "name_slugify": "cromlu3",
+            "logo": "/something.AAA",
+            "name": "cromlu sac",
+            "background_color": "ff0011",
+            "product_add_button_color": "ff0022",
+            "cart_button_color": "ff0033",
+            "product_info_color": "ff0044",
+            "product_arrows_color": "ff0055",
+            "minimum_purchase": "10.50",
+            "delivery_message": "About a pretty message",
+            "is_featured": false,
+            "is_guest_enabled_to_buy": false
+          }
+      responses:
+        200:
+          body:
+            application/json:
+              schema: !include schemas/partner/partner-response-200.schema
+              example: |
+                {
+                  "status": 200,
+                  "data": {
+                      "item": {
+                          "id": 3,
+                          "name": "cromlu sac",
+                          "name_slugify": "cromlu3",
+                          "logo": "/something.AAA",
+                          "background_color": "115497",
+                          "product_add_button_color": "00bb11",
+                          "cart_button_color": "11bbaa",
+                          "product_info_color": "00bbff",
+                          "product_arrows_color": "00bbff",
+                          "minimum_purchase": "100.00",
+                          "delivery_message": "Entrega en 40 horas",
+                          "is_featured": true,
+                          "is_guest_enabled_to_buy": true,
+                          "created_at": "2017-07-03T23:52:30.044Z",
+                          "updated_at": "2017-07-03T23:52:30.044Z",
+                          "archived_at": null
+                      }
+                  },
+                  "message": "El partner fue actualizado"
+                }
+        404:
+          body:
+            application/json:
+              schema: !include schemas/partner/partner-response-404.schema
+              example: |
+                {
+                  "status": 404,
+                  "data": {
+                    "success": false
+                  },
+                  "message": "El partner no fue encontrado"
+                }
+        400:
+          body:
+            application/json:
+              schema: !include schemas/partner/partner-response-400.schema
+              example: |
+                {
+                  "status": 400,
+                  "data": {
+                    "success": false,
+                    "validator": {
+                        "isJoi": true,
+                        "name": "ValidationError",
+                        "details": [
+                          {
+                            "message": "\"id\" must be a number",
+                            "path": "id",
+                            "type": "number.base",
+                            "context": {
+                              "key": "id"
+                            }
+                          }
+                        ],
+                        "_object": {
+                          "id": "dasdad"
+                        }
+                    }
+                  },
+                  "message": "Los campos nos son validos"
+                }
+    patch:
+      description: Update a partner optional attributes by id
+      queryParameters:
+        _method:
+          displayName: _method
+          type: string
+          description: _method=patch - HTTP PATCH
+          example: patch
+          required: true
+      headers:
+        Content-Type:
+          type: string
+      body:
+        schema: !include schemas/partner/partner-request.schema
+        example: |
+          {
+            "name_slugify": "cromlu3",
+            "logo": "/something.AAA",
+            "name": "cromlu sac",
+            "background_color": "ff0011",
+            "product_add_button_color": "ff0022",
+            "cart_button_color": "ff0033",
+            "product_info_color": "ff0044",
+            "product_arrows_color": "ff0055",
+            "minimum_purchase": "10.50",
+            "delivery_message": "About a pretty message",
+            "is_featured": false,
+            "is_guest_enabled_to_buy": false
+          }
+      responses:
+        200:
+          body:
+            application/json:
+              schema: !include schemas/partner/partner-response-200.schema
+              example: |
+                {
+                  "status": 200,
+                  "data": {
+                      "item": {
+                          "id": 3,
+                          "name": "cromlu sac",
+                          "name_slugify": "cromlu3",
+                          "logo": "/something.AAA",
+                          "background_color": "115497",
+                          "product_add_button_color": "00bb11",
+                          "cart_button_color": "11bbaa",
+                          "product_info_color": "00bbff",
+                          "product_arrows_color": "00bbff",
+                          "minimum_purchase": "100.00",
+                          "delivery_message": "Entrega en 40 horas",
+                          "is_featured": true,
+                          "is_guest_enabled_to_buy": true,
+                          "created_at": "2017-07-03T23:52:30.044Z",
+                          "updated_at": "2017-07-03T23:52:30.044Z",
+                          "archived_at": null
+                      }
+                  },
+                  "message": "El partner fue actualizado"
+                }
+        404:
+          body:
+            application/json:
+              schema: !include schemas/partner/partner-response-404.schema
+              example: |
+                {
+                  "status": 404,
+                  "data": {
+                    "success": false
+                  },
+                  "message": "El partner no fue encontrado"
+                }
+        400:
+          body:
+            application/json:
+              schema: !include schemas/partner/partner-response-400.schema
+              example: |
+                {
+                  "status": 400,
+                  "data": {
+                    "success": false,
+                    "validator": {
+                        "isJoi": true,
+                        "name": "ValidationError",
+                        "details": [
+                          {
+                            "message": "\"id\" must be a number",
+                            "path": "id",
+                            "type": "number.base",
+                            "context": {
+                              "key": "id"
+                            }
+                          }
+                        ],
+                        "_object": {
+                          "id": "dasdad"
+                        }
+                    }
+                  },
+                  "message": "Los campos nos son validos"
+                }
+    delete:
+      description: Delte a partner by id
+      queryParameters:
+        _method:
+          displayName: _method
+          type: string
+          description: _method=delete - HTTP DELETE
+          example: delete
+          required: true
+      headers:
+        Content-Type:
+          type: string
+      responses:
+        200:
+          body:
+            application/json:
+              example: |
+                {
+                  "status": 200,
+                  "data": {
+                      "id": 2
+                  },
+                  "message": "El partner fue eliminado"
+                }
+        404:
+          body:
+            application/json:
+              schema: !include schemas/partner/partner-response-404.schema
+              example: |
+                {
+                  "status": 404,
+                  "data": {
+                      "success": false
+                  },
+                  "message": "El partner no fue encontrado"
+                }
+        400:
+          body:
+            application/json:
+              schema: !include schemas/partner/partner-response-400.schema
+              example: |
+                {
+                  "status": 400,
+                  "data": {
+                    "success": false,
+                    "validator": {
+                        "isJoi": true,
+                        "name": "ValidationError",
+                        "details": [
+                          {
+                            "message": "\"id\" must be a number",
+                            "path": "id",
+                            "type": "number.base",
+                            "context": {
+                              "key": "id"
+                            }
+                          }
+                        ],
+                        "_object": {
+                          "id": "dasdad"
+                        }
+                    }
+                  },
+                  "message": "Los campos nos son validos"
+                }
+
+  /find-slugify:
+    /{partnerSlugify}:
+      description: Get partner by nameSlugify
+      uriParameters:
+        partnerSlugify:
+          description: The partner name slugify
+          type: string
+          example: nestle-helados
+      get:
+        description: Get partner by id
+        headers:
+          Content-Type:
+            type: string
+        responses:
+          200:
+            body:
+              application/json:
+                schema: !include schemas/partner/partner-response-200.schema
+                example: |
+                  {
+                    "status": 200,
+                    "data": {
+                        "item": {
+                            "id": 4,
+                            "name": "Helados Nestle",
+                            "name_slugify": "Nestle-helados",
+                            "logo": "https://res.cloudinary.com/riqra/image/upload/v1496525749/web/riqra-partner-logo.png",
+                            "background_color": "225497",
+                            "product_add_button_color": "00bb11",
+                            "cart_button_color": "00bbaa",
+                            "product_info_color": "00bbff",
+                            "product_arrows_color": "00bbff",
+                            "minimum_purchase": "150.00",
+                            "delivery_message": "Entrega en 48 horas",
+                            "is_featured": true,
+                            "is_guest_enabled_to_buy": false,
+                            "created_at": "2017-07-03T23:52:30.044Z",
+                            "updated_at": "2017-07-03T23:52:30.044Z",
+                            "archived_at": null
+                        }
+                    },
+                    "message": "El partner fue encontrado"
+                  }

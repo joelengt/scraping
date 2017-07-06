@@ -1,0 +1,96 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "definitions": {},
+  "id": "http://example.com/example.json",
+  "properties": {
+      "data": {
+          "id": "/properties/data",
+          "properties": {
+              "items": {
+                  "id": "/properties/data/properties/items",
+                  "items": {
+                      "id": "/properties/data/properties/items/items",
+                      "properties": {
+                          "archived_at": {
+                              "id": "/properties/data/properties/items/items/properties/archived_at",
+                              "type": "null"
+                          },
+                          "background_color": {
+                              "id": "/properties/data/properties/items/items/properties/background_color",
+                              "type": "string"
+                          },
+                          "cart_button_color": {
+                              "id": "/properties/data/properties/items/items/properties/cart_button_color",
+                              "type": "string"
+                          },
+                          "created_at": {
+                              "id": "/properties/data/properties/items/items/properties/created_at",
+                              "type": "string"
+                          },
+                          "delivery_message": {
+                              "id": "/properties/data/properties/items/items/properties/delivery_message",
+                              "type": "string"
+                          },
+                          "id": {
+                              "id": "/properties/data/properties/items/items/properties/id",
+                              "type": "integer"
+                          },
+                          "is_featured": {
+                              "id": "/properties/data/properties/items/items/properties/is_featured",
+                              "type": "boolean"
+                          },
+                          "is_guest_enabled_to_buy": {
+                              "id": "/properties/data/properties/items/items/properties/is_guest_enabled_to_buy",
+                              "type": "boolean"
+                          },
+                          "logo": {
+                              "id": "/properties/data/properties/items/items/properties/logo",
+                              "type": "string"
+                          },
+                          "minimum_purchase": {
+                              "id": "/properties/data/properties/items/items/properties/minimum_purchase",
+                              "type": "string"
+                          },
+                          "name": {
+                              "id": "/properties/data/properties/items/items/properties/name",
+                              "type": "string"
+                          },
+                          "name_slugify": {
+                              "id": "/properties/data/properties/items/items/properties/name_slugify",
+                              "type": "string"
+                          },
+                          "product_add_button_color": {
+                              "id": "/properties/data/properties/items/items/properties/product_add_button_color",
+                              "type": "string"
+                          },
+                          "product_arrows_color": {
+                              "id": "/properties/data/properties/items/items/properties/product_arrows_color",
+                              "type": "string"
+                          },
+                          "product_info_color": {
+                              "id": "/properties/data/properties/items/items/properties/product_info_color",
+                              "type": "string"
+                          },
+                          "updated_at": {
+                              "id": "/properties/data/properties/items/items/properties/updated_at",
+                              "type": "string"
+                          }
+                      },
+                      "type": "object"
+                  },
+                  "type": "array"
+              }
+          },
+          "type": "object"
+      },
+      "message": {
+          "id": "/properties/message",
+          "type": "string"
+      },
+      "status": {
+          "id": "/properties/status",
+          "type": "integer"
+      }
+  },
+  "type": "object"
+}
