@@ -16,10 +16,5 @@
             "type": "string"
         }
     },
-    "required": [
-        "photo",
-        "link",
-        "name"
-    ],
-    "type": "object"
+  "type": "object"
 }

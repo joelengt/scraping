@@ -8,7 +8,12 @@ mediaType: application/json
 /ads:
   /partner:
     /{partnerId}:
-      description: Ads from partner
+      description: Ads from one partner
+      uriParameters:
+        partnerId:
+          description: The PartnerID
+          type: number
+          example: 1
       get:
         description: Get ads from a partner by id
         headers:
@@ -153,9 +158,167 @@ mediaType: application/json
                     "message": "Los campos nos son validos"
                   }
   /{id}:
+    description: Ads by id
+    uriParameters:
+      id:
+        description: The id from ads
+        type: number
+        example: 1
     /partner:
       /{partnerId}:
+        description: Ads by id from one partner
+        uriParameters:
+          partnerId:
+            description: The PartnerID
+            type: number
+            example: 1
         get:
+          description: Get Ads by id
+          headers:
+            Content-Type:
+              type: string
+          responses:
+            200:
+              body:
+                application/json:
+                  schema: !include schemas/ads/ads-by-id-response-200.schema
+                  example: |
+                    {
+                      "status": 200,
+                      "data": {
+                          "item": {
+                              "id": 4,
+                              "partner_id": 1,
+                              "name": "pretty banner",
+                              "photo": "http://cdn.image./something.png",
+                              "link": "/something.png",
+                              "created_at": "2017-07-04T14:46:59.674Z",
+                              "updated_at": "2017-07-04T14:46:59.674Z"
+                          }
+                      },
+                      "message": "Elementos ads fueron encontrados"
+                    }
         put:
+          description: Update ads by id
+          queryParameters:
+            _method:
+              displayName: _method
+              type: string
+              description: _method=put - HTTP PUT
+              example: put
+              required: true
+          headers:
+            Content-Type:
+              type: string
+          body:
+            application/json:
+              schema: !include schemas/ads/ads_request.schema
+              example: |
+                {
+                  "name": "Pretty Ads Banner 1",
+                  "link": "/catalog/product/10?page=1&items=10",
+                  "photo": "http://cdn.imdsadsadage.com/something.png"
+                }
+          responses:
+            200:
+              body:
+                application/json:
+                  schema: !include schemas/ads/ads-by-id-response-200.schema
+                  example: |
+                    {
+                      "status": 200,
+                      "data": {
+                          "item": {
+                              "id": 8,
+                              "partner_id": 2,
+                              "name": "dasAAAAdas",
+                              "photo": "http://cdn.imdsadsadageEAE2./something.png",
+                              "link": "/something21asdad1212.png",
+                              "created_at": "2017-07-04T14:47:22.388Z",
+                              "updated_at": "2017-07-04T14:47:22.388Z"
+                          }
+                      },
+                      "message": "El elemento ads fue actualizado"
+                    }
+
         patch:
+          description: Update ads by id - Optinal attributes
+          queryParameters:
+            _method:
+              displayName: _method
+              type: string
+              description: _method=patch - HTTP PATCH
+              example: patch
+              required: true
+          headers:
+            Content-Type:
+              type: string
+          body:
+            application/json:
+              schema: !include schemas/ads/ads_optional_request.schema
+              example: |
+                {
+                  "name": "Pretty Ads Banner 1",
+                  "link": "/catalog/product/10?page=1&items=10",
+                  "photo": "http://cdn.imdsadsadage.com/something.png"
+                }
+          responses:
+            200:
+              body:
+                application/json:
+                  schema: !include schemas/ads/ads-by-id-response-200.schema
+                  example: |
+                    {
+                      "status": 200,
+                      "data": {
+                          "item": {
+                              "id": 8,
+                              "partner_id": 2,
+                              "name": "dasAAAAdas",
+                              "photo": "http://cdn.imdsadsadageEAE2./something.png",
+                              "link": "/something21asdad1212.png",
+                              "created_at": "2017-07-04T14:47:22.388Z",
+                              "updated_at": "2017-07-04T14:47:22.388Z"
+                          }
+                      },
+                      "message": "El elemento ads fue actualizado"
+                    }
+
         delete:
+          description: Delete ads by id
+          headers:
+            Content-Type:
+              type: string
+          responses:
+            200:
+              body:
+                application/json:
+                  schema: !include schemas/ads/ads-by-id-response-200.schema
+                  example: |
+                    {
+                      "status": 200,
+                      "data": {
+                          "item": {
+                              "id": 4,
+                              "partner_id": 1,
+                              "name": "dasAAAAdas",
+                              "photo": "http://cdn.imdsadsadageEAE2./something.png",
+                              "link": "/something21asdad1212.png",
+                              "created_at": "2017-07-04T14:46:59.674Z",
+                              "updated_at": "2017-07-04T14:46:59.674Z"
+                          }
+                      },
+                      "message": "El elemento ads fue actualizado"
+                    }
+            404:
+              body:
+                application/json:
+                  schema: !include schemas/ads/ads-by-id-response-deleted-404.schema
+                  example: |
+                    {
+                      "status": 200,
+                      "data": {
+                          "id": 4
+                      },
+                      "message": "El elemento ads fue eliminado"
+                    }
