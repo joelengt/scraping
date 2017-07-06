@@ -1,0 +1,50 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "definitions": {},
+    "id": "http://example.com/example.json",
+    "properties": {
+        "data": {
+            "id": "/properties/data",
+            "properties": {
+                "author": {
+                    "id": "/properties/data/properties/author",
+                    "type": "string"
+                },
+                "datetime": {
+                    "id": "/properties/data/properties/datetime",
+                    "type": "integer"
+                },
+                "description": {
+                    "id": "/properties/data/properties/description",
+                    "type": "null"
+                },
+                "genre": {
+                    "id": "/properties/data/properties/genre",
+                    "type": "string"
+                },
+                "id": {
+                    "id": "/properties/data/properties/id",
+                    "type": "string"
+                },
+                "link": {
+                    "id": "/properties/data/properties/link",
+                    "type": "string"
+                },
+                "title": {
+                    "id": "/properties/data/properties/title",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "status": {
+            "id": "/properties/status",
+            "type": "integer"
+        },
+        "success": {
+            "id": "/properties/success",
+            "type": "boolean"
+        }
+    },
+    "type": "object"
+}
