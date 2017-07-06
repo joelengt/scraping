@@ -1,0 +1,56 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "definitions": {},
+    "id": "http://example.com/example.json",
+    "properties": {
+        "background_color": {
+            "id": "/properties/background_color",
+            "type": "string"
+        },
+        "cart_button_color": {
+            "id": "/properties/cart_button_color",
+            "type": "string"
+        },
+        "delivery_message": {
+            "id": "/properties/delivery_message",
+            "type": "string"
+        },
+        "is_featured": {
+            "id": "/properties/is_featured",
+            "type": "boolean"
+        },
+        "is_guest_enabled_to_buy": {
+            "id": "/properties/is_guest_enabled_to_buy",
+            "type": "boolean"
+        },
+        "logo": {
+            "id": "/properties/logo",
+            "type": "string"
+        },
+        "minimum_purchase": {
+            "id": "/properties/minimum_purchase",
+            "type": "string"
+        },
+        "name": {
+            "id": "/properties/name",
+            "type": "string"
+        },
+        "name_slugify": {
+            "id": "/properties/name_slugify",
+            "type": "string"
+        },
+        "product_add_button_color": {
+            "id": "/properties/product_add_button_color",
+            "type": "string"
+        },
+        "product_arrows_color": {
+            "id": "/properties/product_arrows_color",
+            "type": "string"
+        },
+        "product_info_color": {
+            "id": "/properties/product_info_color",
+            "type": "string"
+        }
+    },
+    "type": "object"
+}

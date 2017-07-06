@@ -1,0 +1,86 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "definitions": {},
+    "id": "http://example.com/example.json",
+    "properties": {
+        "data": {
+            "id": "/properties/data",
+            "properties": {
+                "success": {
+                    "id": "/properties/data/properties/success",
+                    "type": "boolean"
+                },
+                "validator": {
+                    "id": "/properties/data/properties/validator",
+                    "properties": {
+                        "_object": {
+                            "id": "/properties/data/properties/validator/properties/_object",
+                            "properties": {
+                                "link": {
+                                    "id": "/properties/data/properties/validator/properties/_object/properties/link",
+                                    "type": "string"
+                                },
+                                "photo": {
+                                    "id": "/properties/data/properties/validator/properties/_object/properties/photo",
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "details": {
+                            "id": "/properties/data/properties/validator/properties/details",
+                            "items": {
+                                "id": "/properties/data/properties/validator/properties/details/items",
+                                "properties": {
+                                    "context": {
+                                        "id": "/properties/data/properties/validator/properties/details/items/properties/context",
+                                        "properties": {
+                                            "key": {
+                                                "id": "/properties/data/properties/validator/properties/details/items/properties/context/properties/key",
+                                                "type": "string"
+                                            }
+                                        },
+                                        "type": "object"
+                                    },
+                                    "message": {
+                                        "id": "/properties/data/properties/validator/properties/details/items/properties/message",
+                                        "type": "string"
+                                    },
+                                    "path": {
+                                        "id": "/properties/data/properties/validator/properties/details/items/properties/path",
+                                        "type": "string"
+                                    },
+                                    "type": {
+                                        "id": "/properties/data/properties/validator/properties/details/items/properties/type",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            },
+                            "type": "array"
+                        },
+                        "isJoi": {
+                            "id": "/properties/data/properties/validator/properties/isJoi",
+                            "type": "boolean"
+                        },
+                        "name": {
+                            "id": "/properties/data/properties/validator/properties/name",
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                }
+            },
+            "type": "object"
+        },
+        "message": {
+            "id": "/properties/message",
+            "type": "string"
+        },
+        "status": {
+            "id": "/properties/status",
+            "type": "integer"
+        }
+    },
+    "type": "object"
+}
