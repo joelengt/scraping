@@ -286,6 +286,13 @@ mediaType: application/json
 
         delete:
           description: Delete ads by id
+          queryParameters:
+            _method:
+              displayName: _method
+              type: string
+              description: _method=put - HTTP DELETE
+              example: delete
+              required: true
           headers:
             Content-Type:
               type: string
