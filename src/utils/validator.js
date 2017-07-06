@@ -69,8 +69,8 @@ export const schemas = {
     product_arrows_color: Joi.string(),
     minimum_purchase: Joi.string(),
     delivery_message: Joi.string(),
-    is_featured: Joi.string(),
-    is_guest_enabled_to_buy: Joi.string()
+    is_featured: Joi.boolean().strict(),
+    is_guest_enabled_to_buy: Joi.boolean().strict()
   }),
   partnerOptionalSchema: Joi.object().keys({
     name: Joi.string(),
@@ -83,8 +83,8 @@ export const schemas = {
     product_arrows_color: Joi.string(),
     minimum_purchase: Joi.string(),
     delivery_message: Joi.string(),
-    is_featured: Joi.string(),
-    is_guest_enabled_to_buy: Joi.string()
+    is_featured: Joi.boolean().strict(),
+    is_guest_enabled_to_buy: Joi.boolean().strict()
   }),
   adsSchema: Joi.object().keys({
     name: Joi.string().required(),
