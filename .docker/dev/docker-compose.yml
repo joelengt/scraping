@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+  dev:
+    build:
+      context: ../..
+      dockerfile: .docker/dev/Dockerfile
+    ports:
+      - 5001:3000
+    hostname: service-partners
+    restart: always
+    volumes:
+      - ../../:/app
+    command: ["npm", "run", "dev"]
+
+  test:
+    build:
+      context: ../..
+      dockerfile: .docker/dev/Dockerfile.test
+
+  builder:
+    build:
+      context: ../../
+      dockerfile: .docker/dev/Dockerfile
+    volumes:
+      - ../../:/app
+      - ../../node_modules/:/app/node_modules
+    entrypoint: ["npm", "run", "build"]

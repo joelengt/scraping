@@ -1,0 +1,11 @@
+FROM juliocanares/node-base
+
+COPY . /app
+
+WORKDIR /app
+
+RUN chmod +x .docker/dev/entrypoint.sh
+
+RUN [".docker/dev/entrypoint.sh"]
+
+ENTRYPOINT ["npm", "run", "test:coverage"]
