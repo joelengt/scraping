@@ -64,6 +64,25 @@ test('it route update ads item by id - PUT /ads/:id - statusCode 200', async () 
   expect(response.status).toBe(200)
 })
 
+test('it route update ads item by id - PATCH /ads/:id - statusCode 200', async () => {
+  let body = {
+    name: 'pretty banner',
+    link: '/something.png',
+    photo: 'http://cdn.image./something.png'
+  }
+
+  let UltimateElement = await sql('ads')
+  .orderBy('id', 'desc')
+  .limit(1)
+  .spread(noop)
+
+  let partnerID = 1
+  let endpoint = `${URI}/api/ads/${UltimateElement.id}/partner/${partnerID}?_method=patch`
+
+  let response = await service.post(endpoint, body)
+  expect(response.status).toBe(200)
+})
+
 test('it route delete ads item by id - DELETE /ads/:id - statusCode 200', async () => {
   let UltimateElement = await sql('ads')
   .orderBy('id', 'desc')

@@ -12,7 +12,7 @@ var service = axios.create({
 let URI = 'http://' + process.env.HOST + ':' + process.env.PORT
 
 // Testing response json
-test('it route create new ads item - POST /ads', async () => {
+test('it route create new ads item - POST /ads - payload', async () => {
   let body = {
     name: 'pretty banner',
     link: '/something.png',
@@ -36,7 +36,7 @@ test('it route create new ads item - POST /ads', async () => {
   expect(response.data.data).toEqual(expected)
 })
 
-test('it route ads item by id - GET /ads/:id', async () => {
+test('it route ads item by id - GET /ads/:id - payload', async () => {
   // Get ultimes item created
   let UltimateElement = await sql('ads')
   .orderBy('id', 'desc')
@@ -62,7 +62,7 @@ test('it route ads item by id - GET /ads/:id', async () => {
   expect(response.data.data).toEqual(expected)
 })
 
-test('it route ads items - GET /ads', async () => {
+test('it route ads items - GET /ads - payload', async () => {
   let partnerID = 1
   let endpoint = `${URI}/api/ads/partner/${partnerID}`
   let response = await service.get(endpoint)
@@ -76,7 +76,7 @@ test('it route ads items - GET /ads', async () => {
   expect(val).toBe(true)
 })
 
-test('it route update ads item by id - PUT /ads/:id', async () => {
+test('it route update ads item by id - PUT /ads/:id - payload', async () => {
   let body = {
     name: 'pretty banner',
     link: '/something.png',
@@ -107,7 +107,38 @@ test('it route update ads item by id - PUT /ads/:id', async () => {
   expect(response.data.data).toEqual(expected)
 })
 
-test('it route delete ads item by id - DELETE /ads/:id', async () => {
+test('it route update ads item by id - PATCH /ads/:id - payload', async () => {
+  let body = {
+    name: 'pretty banner',
+    link: '/something.png',
+    photo: 'http://cdn.image./something.png'
+  }
+
+  let UltimateElement = await sql('ads')
+  .orderBy('id', 'desc')
+  .limit(1)
+  .spread(noop)
+
+  UltimateElement = _.pick(UltimateElement, ['id', 'name', 'link', 'photo'])
+
+  let expected = {
+    item: {
+      ...UltimateElement
+    }
+  }
+
+  let partnerID = 1
+  let endpoint = `${URI}/api/ads/${UltimateElement.id}/partner/${partnerID}?_method=patch`
+
+  let response = await service.post(endpoint, body)
+
+  // ignore date fields
+  response.data.data.item = _.pick(response.data.data.item, ['id', 'name', 'link', 'photo'])
+
+  expect(response.data.data).toEqual(expected)
+})
+
+test('it route delete ads item by id - DELETE /ads/:id - payload', async () => {
   let UltimateElement = await sql('ads')
   .orderBy('id', 'desc')
   .limit(1)
@@ -116,6 +147,7 @@ test('it route delete ads item by id - DELETE /ads/:id', async () => {
   let expected = {
     id: UltimateElement.id
   }
+
   let partnerID = 1
   let endpoint = `${URI}/api/ads/${UltimateElement.id}/partner/${partnerID}?_method=delete`
   let response = await service.post(endpoint)

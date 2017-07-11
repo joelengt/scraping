@@ -60,6 +60,24 @@ test('it route update partner item by id - PUT /partner/:id - statusCode 200', a
   expect(response.status).toBe(200)
 })
 
+test('it route update partner item by id - PATCH /partner/:id - statusCode 200', async () => {
+  let body = {
+    name_slugify: 'cromlu3',
+    logo: '/something.AAA',
+    name: 'cromlu sac'
+  }
+
+  let UltimateElement = await sql('partner')
+  .orderBy('id', 'desc')
+  .limit(1)
+  .spread(noop)
+
+  let endpoint = `${URI}/api/partner/${UltimateElement.id}?_method=patch`
+
+  let response = await service.post(endpoint, body)
+  expect(response.status).toBe(200)
+})
+
 test('it route delete partner item by id - DELETE /partner/:id - statusCode 200', async () => {
   let UltimateElement = await sql('partner')
   .orderBy('id', 'desc')
