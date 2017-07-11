@@ -8,27 +8,6 @@ var partnerController = new PartnerController()  // export from index
 var express = require('express')
 var router = express.Router()
 
-var axios = require('axios')
-
-var service = axios.create({
-  headers: {'X-Requested-With': 'XMLHttpRequest'}
-})
-
-router.get('/test', (req, res) => {
-  service.get('http://service-catalog/api/brand/test')
-  .then((result) => {
-    res.status(200).json(result)
-  })
-  .catch((error) => {
-    debug('data?', error)
-    // res.status(500).json({
-    //   success: false,
-    //   error: error
-    // })
-    res.send('error')
-  })
-})
-
 router.route('/find-slugify/:partnerSlugify')
   .get(validateParam(schemas.partnerSlugifySchema),
       partnerController.getBySlugify)
