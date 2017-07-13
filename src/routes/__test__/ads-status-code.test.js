@@ -91,7 +91,6 @@ test('it route delete ads item by id - DELETE /ads/:id - statusCode 200', async 
 
   let partnerID = 1
   let endpoint = `${URI}/api/ads/${UltimateElement.id}/partner/${partnerID}?_method=delete`
-
   let response = await service.post(endpoint)
   expect(response.status).toBe(200)
 })
