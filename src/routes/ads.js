@@ -8,27 +8,7 @@ var adsController = new AdsController()
 var express = require('express')
 var router = express.Router()
 
-router.route('/partner/:partnerId')
-  .get(validateParam(schemas.partIDSchema),
-      adsController.getList)
-
-  .post(validateParam(schemas.partIDSchema),
-      validateBody(schemas.adsSchema),
-      adsController.create)
-
-router.route('/:id/partner/:partnerId')
-  .get(validateParam(schemas.adsIDSchema),
-      adsController.getById)
-
-  .put(validateParam(schemas.adsIDSchema),
-      validateBody(schemas.adsUpdatedSchema),
-      adsController.updateById)
-
-  .patch(validateParam(schemas.adsIDSchema),
-      validateBody(schemas.adsOptionalSchema),
-      adsController.updateOptionalById)
-
-  .delete(validateParam(schemas.adsIDSchema),
-      adsController.deleteById)
+router.route('/start')
+  .get(adsController.getStart)
 
 module.exports = router
