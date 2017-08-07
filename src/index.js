@@ -7,6 +7,7 @@ var debug = require('debug')('riqra-service-partner:index')
 const app = express()
 const server = require('http').Server(app)
 const port = process.env.PORT
+const path = require('path')
 
 // Allow Cors Header
 function allowCrossTokenHeader (req, res, next) {
@@ -22,6 +23,7 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(methodOverride('_method'))
 app.use(allowCrossTokenHeader)
+app.use(express.static(path.join(__dirname, '../public')))
 
 require('./initializers/routes')(app)
 

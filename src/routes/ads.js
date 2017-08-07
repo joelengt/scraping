@@ -9,6 +9,6 @@ var express = require('express')
 var router = express.Router()
 
 router.route('/start')
-  .get(adsController.getStart)
+  .post(adsController.getStart)
 
 module.exports = router

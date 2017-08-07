@@ -110,10 +110,35 @@ function getMatches(needle, haystack) {
     return myResult;
 }
 
+
+function getWhois (urlDomain) {
+  return new Promise ((resolve, reject) => {
+    scrapeIt(`https://www.whois.com/whois/${urlDomain}`, {
+      // Fetch the articles 
+      articles: {
+        listItem: ".whois_main_column",
+        data: {
+          content: {
+            selector: ".df-block-raw",
+            how: "html"
+          }
+        }
+      }
+    }, (err, page) => {
+      if (err) {
+        return reject(err)
+      }
+
+      return resolve(page)
+
+    });
+  })
+}
+
 class AdsController {
   getStart(req, res) {
      
-    let keyword = 'joel'
+    let keyword = req.body.keyword || 'adidas'
 
     const options = {
       keyword: keyword,
@@ -137,7 +162,7 @@ class AdsController {
       let urls = value
 
       // Scraping all the websites
-      Promise.props({
+      return Promise.props({
         data: getScraperPile(urls, keyword)
       })
       .then((result) => {
@@ -146,44 +171,17 @@ class AdsController {
 
         debug('find websites whois ...')
 
-        let resultFinal = []
-
-        // find whois each web
-        webCoincidence.forEach((element) => {
+         let promisesWhois = webCoincidence.map((element) => {
           if (element) {
             let urlPretty = element.url.split('://')[1].split('/')[0]
-            
-            // Callback interface 
-            let urlDomain = 'joelgt.com'
-            scrapeIt(`https://www.whois.com/whois/${urlDomain}`, {
-              // Fetch the articles 
-              articles: {
-                listItem: ".whois_main_column",
-                data: {
-                  content: {
-                    selector: ".df-block-raw",
-                    how: "html"
-                  }
-                }
-              }
-            }, (err, page) => {
-              debug('WHOIS')
-              console.log(err || page);
+            let urlDomain = urlPretty
+            let processWhois = getWhois(urlDomain)
 
-              let elementWhois = {
-                data: page.articles[0].content,
-              }
-              resultFinal.push(elementWhois)
-
-            });
-
+            return processWhois
           }
         })
 
-        debug('ARRAY FINAL')
-        console.log(resultFinal)
-
-        return resultFinal
+        return promisesWhois
 
       })
       .catch(function(e) {
@@ -200,11 +198,19 @@ class AdsController {
       data: data
     })
     .then((result) => {
-      let webCoincidence = result.data
-      debug('TODO', result)
+      debug('TODO', result.data)
 
-      res.status(200).json({
-        data: webCoincidence
+      Promise.all(result.data)
+      .then((result) => {
+
+        res.status(200).json({
+          data: result
+        })
+      })
+      .catch((error) => {
+        debug('error <<<<')
+        console.log('error', error)
+        return error
       })
 
     })
