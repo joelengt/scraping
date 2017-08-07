@@ -16,8 +16,108 @@ var Promise = require('bluebird')
 debug('Server starting ENV =>', process.env.NODE_ENV)
 
 // Import the dependencies
-const cheerio = require("cheerio"),
-      req = require("tinyreq");
+const cheerio = require("cheerio")
+const req = require("tinyreq")
+const whois = require('whois-json')
+const GoogleScraper = require('google-scraper');
+
+ 
+// Find on google by keyword
+function main (searchKeyWord) {
+  let keyword = searchKeyWord
+
+  const options = {
+    keyword: keyword,
+    language: "pe",
+    tld:"com.pe",
+    results: 10
+  };
+ 
+  const scraper = new GoogleScraper(options);
+  let arrayToWhois = []
+   
+  debug('Scraping GOOGLE >> Searching: ', keyword)
+
+  scraper.getGoogleLinks
+  .then(function(value) {
+    debug('Scraping GOOGLE >> Searching End')
+    debug('Scraping webs >> Searching...')
+
+    // Extract some data from website
+    console.log(value)
+    let urls = value
+
+    // Scraping all the websites
+    Promise.props({
+      data: getScraperPile(urls, keyword)
+    })
+    .then((result) => {
+      let webCoincidence = result.data
+      debug('Webs Coincidence keyword', result)
+
+      debug('find websites whois ...')
+
+      // find whois each web
+      webCoincidence.forEach((element) => {
+        if (element) {
+          let urlPretty = element.url.split('://')[1].split('/')[0]
+          debug('WHOIS >> ', urlPretty)
+          whois(urlPretty, {follow: 3, verbose: true}, function(err, result) {
+            console.log('whois>>>>', JSON.stringify(result, null, 2))
+          })
+        }
+      })
+    })
+    .catch(function(e) {
+      debug('Error')
+      console.log(e);
+    })
+  })
+  .catch(function(e) {
+    console.log(e);
+  })
+
+}
+
+function getScraperPile(urls, keyword) {
+  return new Promise((resolve, reject) => {
+    let elements = urls.map((elementURL, index) => {
+      let urlItem = elementURL
+
+      let web = scrapeWeb(urlItem, {content: "html"})
+        .then((data) => {
+          // filtrar la palabra que busco
+          let text = data.content
+          let word = keyword
+          let result = getMatches(word, text)
+
+          if (result.length !== 0) {
+            let element = {
+              url: urlItem,
+              coincidencia: result
+            }
+            return element
+          }
+        })
+        .catch(function(e) {
+          debug('Error')
+          console.log(e);
+        })
+        return web
+    })
+    
+    // resolve array promise
+    Promise.all(elements)
+    .then((result) => {
+      resolve(result)
+    })
+    .catch(function(e) {
+      debug('Error')
+      reject(e)
+    })    
+  })
+}
+
 
 // Define the scrape function
 function scrapeWeb(url, data) {
@@ -74,93 +174,11 @@ function getMatches(needle, haystack) {
     return myResult;
 }
 
-// Find on google by keyword
-let keyword = "joel"
-const GoogleScraper = require('google-scraper');
- 
-const options = {
-  keyword: keyword,
-  language: "pe",
-  tld:"com.pe",
-  results: 10
-};
- 
-const scraper = new GoogleScraper(options);
-let arrayToWhois = []
- 
-debug('Scraping GOOGLE >> Searching: ', keyword)
-
-scraper.getGoogleLinks
-  .then(function(value) {
-    debug('Scraping GOOGLE >> Searching End')
-    debug('Scraping webs >> Searching...')
-
-    // Extract some data from website
-    console.log(value)
-    let urls = value
-
-    // Scraping all the websites
-    Promise.props({
-      data: getScraperPile(urls, keyword)
-    })
-    .then((result) => {
-      debug('FIN', result.data[0])
-    })
-    .catch(function(e) {
-      debug('Error')
-      console.log(e);
-    })
-  })
-  .catch(function(e) {
-    console.log(e);
-  })
+main('joel gonzales tipismana')
 
 
 
-function getScraperPile(urls, keyword) {
-  return new Promise((resolve, reject) => {
-    let elements = []
 
-    urls.forEach((elementURL, index) => {
-      debug(index, 'element', elementURL)
-      let urlItem = elementURL
-
-      let web = scrapeWeb(urlItem, {content: "html"})
-        .then((data) => {
-          // filtrar la palabra que busco
-          let text = data.content
-          let word = keyword
-          let result = getMatches(word, text)
-
-          if (result.length === 0) {
-            debug('No hay resultados en la pagina')
-          } else {
-            debug('Resultados', result)
-            let element = {
-              url: urlItem,
-              coincidencia: result
-            }
-            return element
-          }
-        })
-        .catch(function(e) {
-          debug('Error')
-          console.log(e);
-        })
-
-      elements.push(web)
-    })
-
-    Promise.all(elements)
-    .then((result) => {
-      resolve(result)
-    })
-    .catch(function(e) {
-      debug('Error')
-      reject(e)
-    })    
-  })
-}
 
 
 // function scrapeOnGoogle(url, data, cb) {

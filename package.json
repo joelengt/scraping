@@ -76,7 +76,8 @@
 		"snake-case": "^2.1.0",
 		"tinyreq": "^3.2.2",
 		"uuid": "3.0.1",
-		"website-scraper": "^3.1.0"
+		"website-scraper": "^3.1.0",
+		"whois-json": "^1.2.2"
 	},
 	"devDependencies": {
 		"@riqra/committer": "^1.1.6",
