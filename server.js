@@ -20,47 +20,49 @@ const cheerio = require("cheerio"),
       req = require("tinyreq");
 
 // Define the scrape function
-function scrapeWeb(url, data, cb) {
-  // 1. Create the request
-  req(url, (err, body) => {
-    if (err) { return cb(err); }
+function scrapeWeb(url, data) {
+  return new Promise ((resolve, reject) => {
+    // 1. Create the request
+    req(url, (err, body) => {
+      if (err) { return reject(err); }
 
-    // 2. Parse the HTML
-    let $ = cheerio.load(body),
-    pageData = {};
+      // 2. Parse the HTML
+      let $ = cheerio.load(body),
+      pageData = {};
 
-    // 3. Extract the data
-    Object.keys(data).forEach(k => {
-        pageData[k] = $(data[k]).text()
-    });
+      // 3. Extract the data
+      Object.keys(data).forEach(k => {
+          pageData[k] = $(data[k]).text()
+      });
 
-    // 4. Extract link
-    let anchors = $('a')
-    let links = []
+      // 4. Extract link
+      let anchors = $('a')
+      let links = []
 
-    $(anchors).each(function(i, link) {
-      let item = {}
-      item['name'] = $(link).text()
+      $(anchors).each(function(i, link) {
+        let item = {}
+        item['name'] = $(link).text()
 
-       if ($(link).attr('href') !== undefined &&
-          $(link).attr('href') !== null) {
+         if ($(link).attr('href') !== undefined &&
+            $(link).attr('href') !== null) {
 
-         if ($(link).attr('href').indexOf('http') === -1) {
-           item['link'] = url + $(link).attr('href')
-         } else {
-           item['link'] = $(link).attr('href')
+           if ($(link).attr('href').indexOf('http') === -1) {
+             item['link'] = url + $(link).attr('href')
+           } else {
+             item['link'] = $(link).attr('href')
+           }
+
+           links.push(item)
          }
 
-         links.push(item)
-       }
+      });
 
+      pageData['links'] = links
+
+      // Send the data in the callback
+      resolve(pageData)
     });
-
-    pageData['links'] = links
-
-    // Send the data in the callback
-    cb(null, pageData)
-  });
+  })
 }
 
 function getMatches(needle, haystack) {
@@ -102,7 +104,7 @@ scraper.getGoogleLinks
       data: getScraperPile(urls, keyword)
     })
     .then((result) => {
-      debug('FIN', result)
+      debug('FIN', result.data[0])
     })
     .catch(function(e) {
       debug('Error')
@@ -117,41 +119,46 @@ scraper.getGoogleLinks
 
 function getScraperPile(urls, keyword) {
   return new Promise((resolve, reject) => {
-    let elements = [1,2,3,4]
+    let elements = []
 
-    urls.forEach((elementURL) => {
+    urls.forEach((elementURL, index) => {
+      debug(index, 'element', elementURL)
       let urlItem = elementURL
-      scrapeWeb(urlItem, {
-          content: "html"
-      }, (err, data) => {
-        if (err) {
-          console.log('Error', err)
-        }
-        debug('FILTER WORD WEBSITE')
 
-        // filtrar la palabra que busco
-        // let text = data.content
-        // let word = keyword
-        // let result = getMatches(word, text)
+      let web = scrapeWeb(urlItem, {content: "html"})
+        .then((data) => {
+          // filtrar la palabra que busco
+          let text = data.content
+          let word = keyword
+          let result = getMatches(word, text)
 
-        // if (result.length === 0) {
-        //   debug('No hay resultados en la pagina')
-        // } else {
-        //   debug('Resultados', result)
-        //   let element = {
-        //     url: urlItem,
-        //     coincidencia: result
-        //   }
-        //   elements.push(element)
-        // }
+          if (result.length === 0) {
+            debug('No hay resultados en la pagina')
+          } else {
+            debug('Resultados', result)
+            let element = {
+              url: urlItem,
+              coincidencia: result
+            }
+            return element
+          }
+        })
+        .catch(function(e) {
+          debug('Error')
+          console.log(e);
+        })
 
-          let element = elementURL
-          elements.push(element)
-
-      })
+      elements.push(web)
     })
 
-    resolve(elements)
+    Promise.all(elements)
+    .then((result) => {
+      resolve(result)
+    })
+    .catch(function(e) {
+      debug('Error')
+      reject(e)
+    })    
   })
 }
 
